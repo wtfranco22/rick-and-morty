@@ -1,10 +1,28 @@
 .card {
     display: flex;
     flex-direction: column;
-    border: 1px solid #d8df4c;
+    border: 1px solid #000000;
     border-radius: 5%;
-    padding: 5%;
-    background-color: #d8df4c;
+    position: relative;
+}
+
+.card:hover .details {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5%;
+    background-color: #f5ef48;
+    transition: opacity 0.7s ease;
+    opacity: 1;
+}
+
+.card .details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.0s ease;
 }
 
 .avatar {
@@ -16,9 +34,22 @@
 .name {
     font-size: 2em;
     text-align: center;
-    margin-top: 0;
+    margin: 10% 0;
+    border-bottom: 2px solid black;
 }
 
 .bio {
-    margin-top: auto;
+    font-size: larger;
+    margin: auto 10%;
+}
+
+.card .btn {
+    position: absolute;
+    right: 0px; 
+    padding: 5px 10px;
+    border-radius: 50%;
+    border: 1px solid #f5ef48;
+    background-color: #000000;
+    color: #f5ef48;
+    cursor: pointer;
 }
