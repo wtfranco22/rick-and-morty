@@ -1,10 +1,11 @@
 .input {
     padding: 8px;
     width: 108px;
-    border: 1px solid #ccc;
+    border: 1px solid #ffffaa;
     border-radius: 4px;
     margin-right: 5px;
     transition: border-color 0.3s ease;
+    background-color: #ffffaa;
 }
 
 .input:focus {

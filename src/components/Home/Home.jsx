@@ -1,5 +1,6 @@
 import Cards from './../Cards/Cards';
 import Nav from '../Nav/Nav';
+import Footer from '../Footer/Footer';
 import { useState } from 'react';
 import styles from './Home.module.css';
 export default function Home() {
@@ -21,7 +22,7 @@ export default function Home() {
                             setCharacters([...characters, character]); //guardamos lo que esta + el nuevo dato
                         }
                         setLoading(false);
-                    }, 1500);
+                    }, 1000);
                 })
         } else {
             alert('already exists');
@@ -35,13 +36,14 @@ export default function Home() {
     return (
         <>
             <Nav onSearch={onSearch} />
-            { (loading) ? (
+            {loading && (
                 <div className={styles.loading}>
                     <div className={styles.spinner}></div>
                     <div className={styles.loading_text}>Cargando...</div>
                 </div>
-            ):(false)}
+            )}
             <Cards characters={characters} onClose={onClose} />
+            <Footer />
         </>
     )
 }
