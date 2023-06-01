@@ -6,7 +6,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #000,#204d26);
+  background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('./assets/images/background-body.jpg');
+  background-size: cover;
+  background-position-y: 100px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 code {
