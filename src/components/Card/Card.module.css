@@ -4,7 +4,6 @@
     /* border: 1px solid #fefdc4; */
     border-radius: 5%;
     position: relative;
-    color: #ffffaa;
 }
 
 .card:hover .details {
@@ -47,10 +46,20 @@
 .card .btn {
     position: absolute;
     right: 0px;
-    padding: 4px 10px;
+    padding: 1px 5px;
     border-radius: 50%;
-    border: 1px solid #000;
-    background-color: #000000;
+    border: 2px solid #000;
+    background-color: #000;
     color: #ffffaa;
     cursor: pointer;
+}
+
+.card .btn:hover {
+    background-color: #ffffaa;
+    color: #000;
+}
+
+.textLink{
+    text-decoration: none;
+    color: #ffffaa;
 }

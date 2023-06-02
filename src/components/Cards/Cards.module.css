@@ -1,5 +1,5 @@
 .card_container {
-    padding: 15% 10%;
+    padding: 5% 10%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 10fr));
     gap: 25px;
