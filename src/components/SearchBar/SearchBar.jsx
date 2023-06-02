@@ -12,7 +12,7 @@ export default function SearchBar({ onSearch }) {
       setId('');
    }
    return (
-      <div>
+      <div className={styles.container}>
          <input className={styles.input} type='search' value={id} onChange={changeId} />
          <button className={styles.btn} onClick={searchCharacter}>Add</button>
          {/* no disparamos la funcion de manera inmediata*/}
