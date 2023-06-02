@@ -1,0 +1,25 @@
+.container{
+    display: flex; /*hacemos flexible el contenedor*/
+    height: 100vh; /*le decimos que va a ocupar toda la pantalla
+    /*justify-content: center; /*vamos a ocupar el centro segun el eje X */
+    align-items: center; /*vamos a ajustar al centro segun el eje Y*/
+    flex-direction: row-reverse; /*la direccion es una fila invertida*/
+    padding: 0 20%;
+}
+.img{
+    width: 50%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.description{
+    width: 50%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffaa;
+    background-color: rgba(0, 0, 0, 0.7);
+}
