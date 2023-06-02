@@ -5,7 +5,7 @@ export default function Cards({ characters, onClose, loading }) {
    return (
       <>
          <div className={styles.card_container}>
-            {characters.map((character) => {
+            {characters?.map((character) => {
                return <Card
                   key={character.id}
                   character={character}
