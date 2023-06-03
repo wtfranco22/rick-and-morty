@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import validate from '../../utils/Validate';
 import styles from './Form.module.css';
-export default function Form() {
+export default function Form({login}) {
     const [userData, setUserData] = useState({
         email: '',
         password: '',
@@ -26,7 +26,7 @@ export default function Form() {
     }
     const handleOnSumbmit = (event) => {
         event.preventDefault();
-        console.log(errors);
+        login(userData);
     }
     return (
         <form onSubmit={handleOnSumbmit} className={styles.form} autoComplete='off'>
