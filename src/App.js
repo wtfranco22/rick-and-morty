@@ -1,13 +1,15 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
 import AboutPage from './pages/AboutPage/AboutPage';
 import DetailPage from './pages/DetailPage/DetailPage';
 import Nav from './components/Nav/Nav';
 import { useState } from 'react';
 import styles from './App.module.css';
+import LoginPage from './pages/LoginPage/LoginPage';
 
 function App() {
    const [characters, setCharacters] = useState([]);
+   const location = useLocation();
    const [loading, setLoading] = useState(false);
    const onSearch = (id) => {
       setLoading(true);
@@ -35,13 +37,13 @@ function App() {
    }
    return (
       <>
-
-         <Nav onSearch={onSearch} />
+         { location.pathname!=='/' && <Nav onSearch={onSearch} />}
          <div className={styles.container}>
             <Routes>
-               <Route path="/Home" element={<HomePage characters={characters} loading={loading} onClose={onClose} />} />
-               <Route path="/About" element={<AboutPage />} />
-               <Route path="/Detail/:id" element={<DetailPage />} />
+               <Route path='/' element={<LoginPage />} />
+               <Route path='/Home' element={<HomePage characters={characters} loading={loading} onClose={onClose} />} />
+               <Route path='/About' element={<AboutPage />} />
+               <Route path='/Detail/:id' element={<DetailPage />} />
                <Route path='*' element={<Navigate to='/' />} />
             </Routes>
          </div>
