@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import validate from '../../utils/Validate';
 import styles from './Form.module.css';
-export default function Form({login}) {
+export default function Form({ login }) {
     const [userData, setUserData] = useState({
         email: '',
         password: '',
@@ -11,6 +11,10 @@ export default function Form({login}) {
         password: '',
     })
     const [send, setSend] = useState(false);
+    useEffect(() => {
+        let value = (Object.getOwnPropertyNames(errors).length) === 0;
+        setSend(value);
+    }, [errors])
     const handleOnInput = (event) => {
         setUserData({
             ...userData,
@@ -22,7 +26,6 @@ export default function Form({login}) {
                 [event.target.name]: event.target.value
             })
         )
-        setSend((Object.getOwnPropertyNames(errors).length) ===0);
     }
     const handleOnSumbmit = (event) => {
         event.preventDefault();

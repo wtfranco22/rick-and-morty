@@ -42,14 +42,19 @@
 
 .btn {
     /* margin: 3em 0; */
-    height: 2em;
-    width: 50%;
-    cursor: pointer;
-}
-.btn:disabled{
-    cursor: not-allowed;
     background-color: black;
     border: 1px solid #ffffaa;
     color: #ffffaa;
+    height: 2em;
+    width: 50%;
+    cursor: pointer;
+    font-size: 1em;
+}
+.btn:disabled{
+    cursor: not-allowed;
+}
+.btn:hover {
+    background-color: #ffffaa;
+    color: black;
 }
 /* how init btn disable? */

@@ -47,12 +47,16 @@ function App() {
          alert('Datos incorrectos');
       }
    }
+   const logout = () => {
+      setAccess(false);
+      navigate('/Login');
+   }
    useEffect(() => {
       !access && navigate('/');
    }, [access]);
    return (
       <>
-         {location.pathname !== '/' && <Nav onSearch={onSearch} />}
+         {location.pathname !== '/' && <Nav onSearch={onSearch} logout={logout} />}
          <div className={styles.container}>
             <Routes>
                <Route path='/' element={<LoginPage login={login} />} />
