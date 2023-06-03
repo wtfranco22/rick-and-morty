@@ -41,3 +41,23 @@
   background-color: #ffffaa;
   color: black;
 }
+.random{
+  position: absolute;
+  right: 50%;
+}
+.random .btn{
+  background-color: #ffffaa;
+  border: 1px solid #ffffaa;
+  background-image: url(../../assets/images/random.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 3em;
+  width: 3em;
+  transition: transform 0.5s ease;
+}
+.random .btn:hover {
+  transform: scale(1.3);
+}

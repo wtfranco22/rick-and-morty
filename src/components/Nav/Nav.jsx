@@ -2,8 +2,13 @@ import { Link, useLocation } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './Nav.module.css';
 export default function Nav({ onSearch, logout }) {
-    const handleOnClick = ()=>{
-        logout();
+    const handleOnClick = (event) => {
+        if (event.target.id === 'random') {
+            let idRandom = Math.floor(Math.random() * 825 + 1)
+            onSearch(idRandom);
+        } else {
+            logout();
+        }
     }
     const location = useLocation();
     return (
@@ -15,11 +20,20 @@ export default function Nav({ onSearch, logout }) {
                 <Link to={'/About'} className={styles.title}>
                     About
                 </Link>
-                <div className={styles.searchBar}>
-                    {location.pathname === '/Home' && <SearchBar onSearch={onSearch} />}
-                </div>
+                {
+                    location.pathname === '/Home'
+                    &&
+                    <>
+                        <div className={styles.random}>
+                            <button onClick={handleOnClick} className={styles.btn} id='random'></button>
+                        </div>
+                        <div className={styles.searchBar}>
+                            <SearchBar onSearch={onSearch} />
+                        </div>
+                    </>
+                }
                 <div className={styles.logout}>
-                    <button onClick={handleOnClick} className={styles.btn}>logout</button>
+                    <button onClick={handleOnClick} className={styles.btn} id='logout'>logout</button>
                 </div>
             </div>
         </>

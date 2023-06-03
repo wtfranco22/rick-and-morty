@@ -6,6 +6,7 @@ import Nav from './components/Nav/Nav';
 import { useEffect, useState } from 'react';
 import styles from './App.module.css';
 import LoginPage from './pages/LoginPage/LoginPage';
+import axios from 'axios';
 
 function App() {
    const [characters, setCharacters] = useState([]);
@@ -18,9 +19,9 @@ function App() {
    const onSearch = (id) => {
       setLoading(true);
       if (characters.find((character) => character.id === Number(id)) === undefined) {
-         fetch(`https://rickandmortyapi.com/api/character/${id}`)
-            .then((res) => res.json())
-            .then((character) => {
+         axios.get(`https://rickandmortyapi.com/api/character/${id}`)
+            .then((response) => {
+               let character = response.data;
                setTimeout(() => {
                   if (character.error) {
                      alert(character.error);
@@ -30,6 +31,10 @@ function App() {
                   setLoading(false);
                }, 1000);
             })
+            .catch((error) => {
+               alert('Error al buscar el personaje');
+               setLoading(false);
+            });
       } else {
          alert('already exists');
          setLoading(false);
