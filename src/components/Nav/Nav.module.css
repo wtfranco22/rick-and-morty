@@ -26,7 +26,7 @@
 
 .logout{
   position: absolute;
-  right: 2%;
+  right: 1%;
 }
 
 .logout .btn{
@@ -35,5 +35,9 @@
   color: #ffffaa;
   cursor: pointer;
   height: 2.5em;
-  width: 5em;
+  width: 4em;
+}
+.logout .btn:hover{
+  background-color: #ffffaa;
+  color: black;
 }
