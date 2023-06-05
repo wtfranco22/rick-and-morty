@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    flex-direction: row-reverse;
+    padding: 0 10%;
+}
+
+.img {
+    width: 25%;
+    height: 50vh;
+    display: flex;
+    background-image: url('../../assets/images/profile.jpeg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+
+}
+.description {
+    width: 75%;
+    height: 50vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #ffffaa;
+    text-align: center;
+}
+.card_container {
+    display: grid;
+    justify-content: start;
+    align-items: start;
+    grid-template-columns: repeat(auto-fill, minmax(25%, 10fr));
+    gap: 25px;
+}
+
