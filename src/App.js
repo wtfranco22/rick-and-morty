@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
 import AboutPage from './pages/AboutPage/AboutPage';
 import DetailPage from './pages/DetailPage/DetailPage';
@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import styles from './App.module.css';
 import LoginPage from './pages/LoginPage/LoginPage';
 import axios from 'axios';
+import Favorites from './components/Favorites/Favorites';
 
 function App() {
    const [characters, setCharacters] = useState([]);
@@ -57,9 +58,9 @@ function App() {
       setAccess(false);
       navigate('/');
    }
-   // useEffect(() => {
-   //    !access && navigate('/');
-   // }, [access]);
+   useEffect(() => {
+      !access && navigate('/');
+   }, [access]);
    return (
       <>
          {location.pathname !== '/' && <Nav onSearch={onSearch} logout={logout} />}
@@ -67,6 +68,7 @@ function App() {
             <Routes>
                <Route path='/' element={<LoginPage login={login} />} />
                <Route path='/Home' element={<HomePage characters={characters} loading={loading} onClose={onClose} />} />
+               <Route path='/Favorites' element={<Favorites />} />
                <Route path='/About' element={<AboutPage />} />
                <Route path='/Detail/:id' element={<DetailPage />} />
                <Route path='*' element={<ErrorPage />} />

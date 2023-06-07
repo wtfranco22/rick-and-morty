@@ -63,3 +63,13 @@
     text-decoration: none;
     color: #ffffaa;
 }
+.card .btn_fav{
+    position: absolute;
+    left: 0px;
+    padding: 1px 5px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    background-color: #000;
+    color: #ffffaa;
+    cursor: pointer;
+}

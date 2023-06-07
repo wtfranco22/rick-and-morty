@@ -20,6 +20,9 @@ export default function Nav({ onSearch, logout }) {
                 <Link to={'/About'} className={styles.title}>
                     About
                 </Link>
+                <Link to={'/Favorites'} className={styles.title}>
+                    Favs
+                </Link>
                 {
                     location.pathname === '/Home'
                     &&
