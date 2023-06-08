@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Card.module.css';
 import { connect } from 'react-redux';
 import { addFav, removeFav } from './../../redux/actions';
 import { useEffect, useState } from 'react';
 export function Card({ character, onClose, addFav, removeFav, favorites }) {
+   const location = useLocation();
    const [isFav, setIsFav] = useState(false);
    useEffect(() => {
       favorites.forEach((fav) => {
@@ -11,7 +12,7 @@ export function Card({ character, onClose, addFav, removeFav, favorites }) {
             setIsFav(true);
          }
       });
-   }, [favorites]);
+   }, [character.id, favorites]);
    const handleFavorite = () => {
       if (isFav) {
          removeFav(character);
@@ -20,6 +21,10 @@ export function Card({ character, onClose, addFav, removeFav, favorites }) {
          addFav(character);
          setIsFav(true);
       }
+   }
+   const handleDelete = ()=>{
+      handleFavorite();
+      onClose(character.id)
    }
    return (
       <>
@@ -36,7 +41,7 @@ export function Card({ character, onClose, addFav, removeFav, favorites }) {
                   </p>
                </div>
             </Link>
-            <button className={styles.btn} onClick={() => { onClose(character.id) }}>X</button>
+            { location.pathname === '/Home' &&<button className={styles.btn} onClick={handleDelete}>X</button>}
             {
                isFav ? (
                   <button className={styles.btn_fav} onClick={handleFavorite}>❤️</button>

@@ -20,7 +20,7 @@ function App() {
    const PASSWORD = 'franco123';
    const onSearch = (id) => {
       setLoading(true);
-      if (characters.find((character) => character.id === Number(id)) === undefined) {
+      if (!characters.some((character) => character.id === Number(id))) {
          axios.get(`https://rickandmortyapi.com/api/character/${id}`)
             .then((response) => {
                let character = response.data;
@@ -60,7 +60,7 @@ function App() {
    }
    useEffect(() => {
       !access && navigate('/');
-   }, [access]);
+   }, [access, navigate]);
    return (
       <>
          {location.pathname !== '/' && <Nav onSearch={onSearch} logout={logout} />}
