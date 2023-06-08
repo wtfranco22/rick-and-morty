@@ -1,14 +1,10 @@
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import HomePage from './pages/HomePage/HomePage';
-import AboutPage from './pages/AboutPage/AboutPage';
-import DetailPage from './pages/DetailPage/DetailPage';
-import ErrorPage from './pages/ErrorPage/ErrorPage';
+import {HomePage, AboutPage, DetailPage, ErrorPage, LoginPage, FavoritesPage} from './pages'
 import Nav from './components/Nav/Nav';
 import { useEffect, useState } from 'react';
-import styles from './App.module.css';
-import LoginPage from './pages/LoginPage/LoginPage';
 import axios from 'axios';
-import Favorites from './components/Favorites/Favorites';
+import { useDispatch } from 'react-redux';
+import { removeFav } from './redux/actions';
 
 function App() {
    const [characters, setCharacters] = useState([]);
@@ -18,6 +14,7 @@ function App() {
    const [access, setAccess] = useState(false);
    const EMAIL = 'franco@gmail.com';
    const PASSWORD = 'franco123';
+   const dispatch =useDispatch();
    const onSearch = (id) => {
       setLoading(true);
       if (!characters.some((character) => character.id === Number(id))) {
@@ -45,18 +42,20 @@ function App() {
    const onClose = (id) => {
       const updateCharacters = characters.filter((character) => character.id !== Number(id));
       setCharacters(updateCharacters);
+      dispatch(removeFav(id));
    }
    const login = (userData) => {
       if (userData.email === EMAIL && userData.password === PASSWORD) {
          setAccess(true);
          navigate('/Home');
-      }else{
+      } else {
          alert('Datos incorrectos');
       }
    }
    const logout = () => {
       setAccess(false);
       navigate('/');
+      setCharacters([]);
    }
    useEffect(() => {
       !access && navigate('/');
@@ -64,16 +63,14 @@ function App() {
    return (
       <>
          {location.pathname !== '/' && <Nav onSearch={onSearch} logout={logout} />}
-         <div className={styles.container}>
-            <Routes>
-               <Route path='/' element={<LoginPage login={login} />} />
-               <Route path='/Home' element={<HomePage characters={characters} loading={loading} onClose={onClose} />} />
-               <Route path='/Favorites' element={<Favorites />} />
-               <Route path='/About' element={<AboutPage />} />
-               <Route path='/Detail/:id' element={<DetailPage />} />
-               <Route path='*' element={<ErrorPage />} />
-            </Routes>
-         </div>
+         <Routes>
+            <Route path='/' element={<LoginPage login={login} />} />
+            <Route path='/Home' element={<HomePage characters={characters} loading={loading} onClose={onClose} />} />
+            <Route path='/Favorites' element={<FavoritesPage onClose={onClose}/>} />
+            <Route path='/About' element={<AboutPage />} />
+            <Route path='/Detail/:id' element={<DetailPage />} />
+            <Route path='*' element={<ErrorPage />} />
+         </Routes>
       </>
    )
 }

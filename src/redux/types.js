@@ -2,9 +2,13 @@ const ADD_FAV = 'ADD_FAV';
 const REMOVE_FAV = 'REMOVE_FAV';
 const FILTER = 'FILTER';
 const ORDER = 'ORDER';
+const GET_CHARACTER = 'GET_CHARACTER';
+const CLEAN_CHARACTER = 'CLEAN_CHARACTER';
 module.exports = {
     ADD_FAV,
 	REMOVE_FAV,
     FILTER,
     ORDER,
+    GET_CHARACTER,
+    CLEAN_CHARACTER
 }

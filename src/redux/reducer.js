@@ -1,7 +1,8 @@
-import { ADD_FAV, REMOVE_FAV, FILTER, ORDER } from './types';
+import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, GET_CHARACTER, CLEAN_CHARACTER } from './types';
 const initialState = {
     myFavorites: [],
-    allCharacters: []
+    allCharacters: [],
+    characterDetail:{}
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -37,6 +38,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 myFavorites: orden
+            }
+        case GET_CHARACTER:
+            return {
+                ...state,
+                characterDetail: payload
+            }
+        case CLEAN_CHARACTER:
+            return {
+                ...state,
+                characterDetail: {}
             }
         default:
             return {

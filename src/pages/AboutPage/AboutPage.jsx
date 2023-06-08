@@ -1,12 +1,8 @@
-import React from 'react';
 import styles from './AboutPage.module.css';
-// import imgProfile from './../../assets/images/profile.jpeg'
-
-const About = () => {
+export default function About() {
     return (
         <div className={styles.container}>
             <div className={styles.img}>
-                {/* <img src={imgProfile} alt="Mi Foto" /> */}
             </div>
             <div className={styles.description}>
                 <h1>¡Hi! I'm Franco Rodriguez</h1>
@@ -41,5 +37,3 @@ const About = () => {
         </div >
     );
 };
-
-export default About;

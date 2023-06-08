@@ -1,17 +1,18 @@
-import { connect, useDispatch } from 'react-redux';
-import styles from './Favorites.module.css';
-import Card from './../Card/Card';
+import { useDispatch, useSelector } from 'react-redux';
+import { Cards } from './../../components/index';
 import { filterCards, orderCards } from '../../redux/actions';
 import { useState } from 'react';
 
-export const Favorites = ({ favorites }) => {
+export default function FavoritesPage({ onClose }) {
     const dispatch = useDispatch();
+    const favorites = useSelector((state) => state.myFavorites)
+    console.log(favorites)
     const [aux, setAux] = useState(false);
-    const handleOrder = (event) =>{
+    const handleOrder = (event) => {
         setAux(true);
         dispatch(orderCards(event.target.value));
     }
-    const handleFilter = (event) =>{
+    const handleFilter = (event) => {
         dispatch(filterCards(event.target.value));
     }
     return (
@@ -33,20 +34,7 @@ export const Favorites = ({ favorites }) => {
                     <option onClick={handleFilter} value='unkown'>unknown</option>
                 </select>
             </label>
-            <div className={styles.card_container}>
-                {favorites?.map((character) => {
-                    return <Card
-                        key={character.id}
-                        character={character}
-                    />
-                })}
-            </div>
+            <Cards characters={favorites} onClose={onClose} />
         </>
     )
-}
-export const mapStateToProps = (state) => {
-    return {
-        favorites: state.myFavorites
-    }
-}
-export default connect(mapStateToProps)(Favorites)
+};
