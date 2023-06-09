@@ -5,11 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
-  background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('./assets/images/background-body.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  overflow-y: scroll;
 }
 
 code {
@@ -17,14 +13,15 @@ code {
     monospace;
 }
 
-body::before, body::after {
+body::before,
+body::after {
   content: "";
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('./assets/images/background-body.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('./assets/images/background-body.jpg');
   background-size: cover;
   animation: 30s ease infinite;
   z-index: -1;
@@ -42,6 +39,7 @@ body::after {
   0% {
     background-position: 50% -20%;
   }
+
   100% {
     background-position: 50% 100%;
   }
@@ -51,6 +49,7 @@ body::after {
   0% {
     background-position: 50% 120%;
   }
+
   100% {
     background-position: 50% 0%;
   }

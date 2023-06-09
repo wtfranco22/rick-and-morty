@@ -7,7 +7,7 @@ export function Card({ character, onClose }) {
    const location = useLocation();
    const [isFav, setIsFav] = useState(false);
    const dispatch = useDispatch();
-   const favorites = useSelector((state)=>state.myFavorites)
+   const favorites = useSelector((state) => state.myFavorites)
    useEffect(() => {
       favorites.forEach((fav) => {
          if (fav.id === character.id) {
@@ -24,7 +24,7 @@ export function Card({ character, onClose }) {
          setIsFav(true);
       }
    }
-   const handleDelete = ()=>{
+   const handleDelete = () => {
       onClose(character.id)
    }
    return (
@@ -33,16 +33,10 @@ export function Card({ character, onClose }) {
             <img className={styles.avatar} src={character.image} alt={character.name} />
             <Link to={'/Detail/' + character.id} className={styles.textLink}>
                <div className={styles.details}>
-                  <h3 className={styles.name}>{character.name}</h3>
-                  <p className={styles.bio}>
-                     {'Status: ' + character.status} <br />
-                     {'Species: ' + character.species} <br />
-                     {'Gender: ' + character.gender} <br />
-                     {'Origin: ' + character.origin.name} <br />
-                  </p>
+                  <h3 className={styles.name}>{character.name.split(' ', 1)}</h3>
                </div>
             </Link>
-            { location.pathname === '/Home' &&<button className={styles.btn} onClick={handleDelete}>X</button>}
+            {location.pathname === '/Home' && <button className={styles.btn} onClick={handleDelete}>X</button>}
             {
                isFav ? (
                   <button className={styles.btn_fav} onClick={handleFavorite}>❤️</button>

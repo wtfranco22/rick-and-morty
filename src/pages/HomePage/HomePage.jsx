@@ -1,4 +1,4 @@
-import { Cards } from "./../../components/index";
+import { Cards } from "./../../components";
 import styles from "./HomePage.module.css";
 
 export default function HomePage({ characters, onClose, loading }) {

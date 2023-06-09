@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    color: #ffffaa;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.order {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.label{
+    display: block;
+    padding: 5%;
+    font-size: 1.5em;
+}
+
+.select{
+    margin-top: 1em;
+    background-color: black;
+    color: #ffffaa;
+    border: 1px solid rgb(1, 43, 1);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.473);
+    width: 100%;
+    padding: .5em;
+    font-size: .5em;
+    text-align: center;
+}

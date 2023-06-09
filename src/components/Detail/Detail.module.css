@@ -1,6 +1,6 @@
 .container{
     display: flex; /*hacemos flexible el contenedor*/
-    height: 100vh; /*le decimos que va a ocupar toda la pantalla
+    height: 75vh; /*le decimos que va a ocupar toda la pantalla
     /*justify-content: center; /*vamos a ocupar el centro segun el eje X */
     align-items: center; /*vamos a ajustar al centro segun el eje Y*/
     flex-direction: row-reverse; /*la direccion es una fila invertida*/

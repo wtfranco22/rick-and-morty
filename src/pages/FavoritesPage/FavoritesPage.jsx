@@ -1,5 +1,6 @@
+import { Cards } from './../../components';
+import styles from './FavoritesPAge.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { Cards } from './../../components/index';
 import { filterCards, orderCards } from '../../redux/actions';
 import { useState } from 'react';
 
@@ -17,23 +18,29 @@ export default function FavoritesPage({ onClose }) {
     }
     return (
         <>
-            <label>
-                Ordenar de manera:
-                <select>
-                    <option onClick={handleOrder} value='A'>Ascendente</option>
-                    <option onClick={handleOrder} value='D'>Descendente</option>
-                </select>
-            </label>
-            <label>
-                Filtrar segun:
-                <select>
-                    <option onClick={handleFilter} value='all'>all</option>
-                    <option onClick={handleFilter} value='Male'>Male</option>
-                    <option onClick={handleFilter} value='Female'>Female</option>
-                    <option onClick={handleFilter} value='Genderless'>Genderless</option>
-                    <option onClick={handleFilter} value='unkown'>unknown</option>
-                </select>
-            </label>
+            <div className={styles.container}>
+                <div className={styles.order}>
+                    <label className={styles.label}>
+                        Ordenar de manera:
+                        <select className={styles.select}>
+                            <option onClick={handleOrder} value='A'>Ascendente</option>
+                            <option onClick={handleOrder} value='D'>Descendente</option>
+                        </select>
+                    </label>
+                </div>
+                <div className={styles.filter}>
+                    <label className={styles.label}>
+                        Filtrar segun:
+                        <select className={styles.select}>
+                            <option onClick={handleFilter} value='all'>all</option>
+                            <option onClick={handleFilter} value='Male'>Male</option>
+                            <option onClick={handleFilter} value='Female'>Female</option>
+                            <option onClick={handleFilter} value='Genderless'>Genderless</option>
+                            <option onClick={handleFilter} value='unkown'>unknown</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
             <Cards characters={favorites} onClose={onClose} />
         </>
     )

@@ -16,20 +16,24 @@
   font-size: 2em;
   font-weight: bold;
   margin-left: 3%;
+  transition: transform 0.5s ease;
 }
 
+.title:hover {
+  transform: scale(1.3);
+}
 
 .searchBar {
   position: absolute;
   right: 15%;
 }
 
-.logout{
+.logout {
   position: absolute;
   right: 1%;
 }
 
-.logout .btn{
+.logout .btn {
   background-color: black;
   border: 1px solid #ffffaa;
   color: #ffffaa;
@@ -37,15 +41,18 @@
   height: 2.5em;
   width: 4em;
 }
-.logout .btn:hover{
+
+.logout .btn:hover {
   background-color: #ffffaa;
   color: black;
 }
-.random{
+
+.random {
   position: absolute;
   right: 50%;
 }
-.random .btn{
+
+.random .btn {
   background-color: #ffffaa;
   border: 1px solid #ffffaa;
   background-image: url(../../assets/images/random.svg);
@@ -54,10 +61,11 @@
   background-position: center;
   border-radius: 50%;
   cursor: pointer;
-  height: 3em;
-  width: 3em;
+  height: 4em;
+  width: 4em;
   transition: transform 0.5s ease;
 }
+
 .random .btn:hover {
   transform: scale(1.3);
 }

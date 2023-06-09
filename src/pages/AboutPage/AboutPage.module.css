@@ -1,6 +1,6 @@
 .container {
     display: flex;
-    height: 100vh;
+    height: 75vh;
     align-items: center;
     flex-direction: row-reverse;
     padding: 0 10%;
