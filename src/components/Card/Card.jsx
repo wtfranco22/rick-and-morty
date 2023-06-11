@@ -36,12 +36,16 @@ export function Card({ character, onClose }) {
                   <h3 className={styles.name}>{character.name.split(' ', 1)}</h3>
                </div>
             </Link>
-            {location.pathname === '/Home' && <button className={styles.btn} onClick={handleDelete}>X</button>}
+            {location.pathname === '/Home' && <button className={styles.btn} onClick={handleDelete}>
+               <span className={styles.delete}>⨉</span>
+               </button>}
             {
                isFav ? (
-                  <button className={styles.btn_fav} onClick={handleFavorite}>❤️</button>
+                  <button className={styles.btn_fav} onClick={handleFavorite}>
+                     <span className={styles.star}>★</span></button>
                ) : (
-                  <button className={styles.btn_fav} onClick={handleFavorite}>🤍</button>
+                  <button className={styles.btn_fav} onClick={handleFavorite}>
+                     <span className={styles.star}>☆</span></button>
                )
             }
          </div>

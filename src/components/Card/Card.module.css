@@ -11,7 +11,7 @@
 
 .card:hover{
     opacity: 1;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.473);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
 }
 
 .card:hover .details {
@@ -20,7 +20,7 @@
     display: flex;
     flex-direction: column;
     border-radius: 5%;
-    background-color: #005800ec;
+    background-color: #004700ec;
     transition: opacity 0.5s ease;
     opacity: 1;
 }
@@ -37,11 +37,11 @@
     width: 100%;
     border-radius: 5%;
     object-fit: cover;
-    opacity: .5;
+    opacity: .3;
 }
 
 .card:hover .avatar {
-    opacity: 1;
+    opacity: .8;
 }
 
 .name {
@@ -79,10 +79,13 @@
 .card .btn_fav{
     position: absolute;
     left: 0px;
-    padding: 1px 5px;
+    /* padding: 1px 5px; */
     border-radius: 50%;
-    border: 2px solid #000;
+    border: 1px solid #000;
     background-color: #000;
     color: #ffffaa;
     cursor: pointer;
+}
+.star{
+    font-size: x-large;
 }

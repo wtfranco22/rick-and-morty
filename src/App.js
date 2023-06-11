@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import {HomePage, AboutPage, DetailPage, ErrorPage, LoginPage, FavoritesPage} from './pages'
-import Nav from './components/Nav/Nav';
+import { HomePage, AboutPage, DetailPage, ErrorPage, LoginPage, FavoritesPage } from './pages'
+import { Nav } from './components';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -14,7 +14,7 @@ function App() {
    const [access, setAccess] = useState(false);
    const EMAIL = 'franco@gmail.com';
    const PASSWORD = 'franco123';
-   const dispatch =useDispatch();
+   const dispatch = useDispatch();
    const onSearch = (id) => {
       setLoading(true);
       if (!characters.some((character) => character.id === Number(id))) {
@@ -66,7 +66,7 @@ function App() {
          <Routes>
             <Route path='/' element={<LoginPage login={login} />} />
             <Route path='/Home' element={<HomePage characters={characters} loading={loading} onClose={onClose} />} />
-            <Route path='/Favorites' element={<FavoritesPage onClose={onClose}/>} />
+            <Route path='/Favorites' element={<FavoritesPage onClose={onClose} />} />
             <Route path='/About' element={<AboutPage />} />
             <Route path='/Detail/:id' element={<DetailPage />} />
             <Route path='*' element={<ErrorPage />} />
