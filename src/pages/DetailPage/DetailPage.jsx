@@ -1,6 +1,6 @@
 import styles from './DetailPage.module.css';
 import { Detail } from '../../components';
-import useCharacter from "../../hooks/useCharacters";
+import useCharacter from "../../hooks/useCharacter";
 
 export default function DetailPage() {
     const character = useCharacter();

@@ -1,29 +1,47 @@
-import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, GET_CHARACTER, CLEAN_CHARACTER } from './types';
+import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, GET_CHARACTER, CLEAN_CHARACTER, ADD_CHARACTER, REMOVE_CHARACTER, CLEAN_CHARACTERS, SET_LOADING } from './types';
 const initialState = {
-    myFavorites: [],
     allCharacters: [],
-    characterDetail:{}
+    allFavs: [],
+    myFavorites: [],
+    characterDetail: {},
+    loading: false
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
     switch (type) {
+        case ADD_CHARACTER:
+            return {
+                ...state,
+                allCharacters: [...state.allCharacters, payload]
+            }
         case ADD_FAV:
             return {
                 ...state,
-                allCharacters: [...state.allCharacters, payload],
-                myFavorites: [...state.myFavorites, payload]
+                myFavorites: [...state.myFavorites, payload],
+                allFavs: [...state.allFavs, payload]
             };
-        case REMOVE_FAV:
+        case REMOVE_CHARACTER:
+            let favs = state.myFavorites.filter((character) => character.id !== Number(payload));
             return {
                 ...state,
                 allCharacters: state.allCharacters.filter((character) => character.id !== Number(payload)),
-                myFavorites: state.myFavorites.filter((character) => character.id !== Number(payload))
+                myFavorites: favs,
+                allFavs: favs
+            }
+        case REMOVE_FAV:
+            let newFavs = state.myFavorites.filter((character) => character.id !== Number(payload));
+            return {
+                ...state,
+                myFavorites: newFavs,
+                allFavs: newFavs
             };
         case FILTER:
             let characters;
             if (payload === 'all') {
-                characters = state.allCharacters;
-            } else { characters = state.allCharacters.filter((character) => character.gender === payload) }
+                characters = state.allFavs;
+            } else {
+                characters = state.allFavs.filter((character) => character.gender === payload)
+            }
             return {
                 ...state,
                 myFavorites: characters
@@ -44,10 +62,21 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 characterDetail: payload
             }
+        case CLEAN_CHARACTERS:
+            return {
+                allCharacters: [],
+                myFavorites: [],
+                characterDetail: {}
+            }
         case CLEAN_CHARACTER:
             return {
                 ...state,
                 characterDetail: {}
+            }
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: payload
             }
         default:
             return {
