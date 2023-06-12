@@ -1,24 +1,19 @@
 .card {
     display: flex;
     flex-direction: column;
-    /* border: 1px solid #fefdc4; */
     border-radius: 5%;
     position: relative;
-    /* opacity: .7;
-    padding: 10%; */
-    background-color: #000; 
+    background-color: #000;
 }
 
-.card:hover{
+.card:hover {
     opacity: 1;
     box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
 }
 
 .card:hover .details {
-    height: 25%;
+    height: 20%;
     width: 100%;
-    display: flex;
-    flex-direction: column;
     border-radius: 5%;
     background-color: #004700ec;
     transition: opacity 0.5s ease;
@@ -35,6 +30,7 @@
 
 .avatar {
     width: 100%;
+    height: 100%;
     border-radius: 5%;
     object-fit: cover;
     opacity: .3;
@@ -45,18 +41,13 @@
 }
 
 .name {
-    font-size: 2em;
+    font-size: 1.5em;
     text-align: center;
-    margin: 0 0;
+    margin: auto;
     border-bottom: 1px solid #ffffaa;
 }
 
-.bio {
-    font-size: larger;
-    margin: auto 10%;
-}
-
-.card .btn {
+.card .btn_close {
     position: absolute;
     right: 0px;
     padding: 1px 5px;
@@ -65,27 +56,55 @@
     background-color: #000;
     color: #ffffaa;
     cursor: pointer;
+    font-size: large;
 }
+
 
 .card .btn:hover {
     background-color: #ffffaa;
     color: #000;
 }
 
-.textLink{
+.textLink {
     text-decoration: none;
     color: #ffffaa;
 }
-.card .btn_fav{
+
+.btn_star_off {
     position: absolute;
     left: 0px;
-    /* padding: 1px 5px; */
+    padding: 1px 5px;
+    border: 2px solid #000;
     border-radius: 50%;
-    border: 1px solid #000;
     background-color: #000;
     color: #ffffaa;
     cursor: pointer;
+    font-size: large;
 }
-.star{
-    font-size: x-large;
+.btn_star_on{
+    position: absolute;
+    left: 0px;
+    padding: 1px 5px;
+    border: 2px solid #ffffaa;
+    border-radius: 50%;
+    background-color: #000;
+    color: #ffffaa;
+    cursor: pointer;
+    font-size: large;
+    animation: star 1s forwards
+}
+
+@keyframes star {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: translateY(-2em);
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
