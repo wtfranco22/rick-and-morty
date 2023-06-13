@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 export function Card({ character, onClose }) {
    const location = useLocation();
    const [isFav, setIsFav] = useState(false);
+   const [animate, setAnimate] = useState(false);
    const dispatch = useDispatch();
    const favorites = useSelector((state) => state.myFavorites)
    useEffect(() => {
@@ -15,17 +16,25 @@ export function Card({ character, onClose }) {
          }
       });
    }, [character.id, favorites]);
-   const handleFavorite = () => {
-      if (isFav) {
-         dispatch(removeFav(character.id));
-         setIsFav(false);
+
+   const handleClick = (event) => {
+      // capturamos el evento click y realizamos una accion
+      if (event.target.name === 'btn_close') {
+         // borramos al character del estado global
+         onClose(character.id);
       } else {
-         dispatch(addFav(character));
-         setIsFav(true);
+         if (isFav) {
+            // cancelamos animacion y quitamos de fav
+            setAnimate(false)
+            dispatch(removeFav(character.id));
+            setIsFav(false);
+         } else {
+            //agregamos animacion despues de agregar un nuevo character fav
+            dispatch(addFav(character));
+            setAnimate(true)
+            setIsFav(true);
+         }
       }
-   }
-   const handleDelete = () => {
-      onClose(character.id)
    }
    return (
       <>
@@ -36,12 +45,12 @@ export function Card({ character, onClose }) {
                   <h3 className={styles.name}>{character.name.split(' ', 1)}</h3>
                </div>
             </Link>
-            {location.pathname === '/Home' && <button className={styles.btn_close} onClick={handleDelete}>⨉</button>}
+            {location.pathname === '/Home' && <button className={styles.btn_close} name='btn_close' onClick={handleClick}>⨉</button>}
             {
                isFav ? (
-                  <button className={styles.btn_star_on} onClick={handleFavorite}>★</button>
+                  <button className={`${styles.btn_star_on} ${animate ? styles.btn_star : ''}`} name='btn_star_on' onClick={handleClick}>★</button>
                ) : (
-                  <button className={styles.btn_star_off} onClick={handleFavorite}>☆</button>
+                  <button className={styles.btn_star_off} name='btn_star_off' onClick={handleClick}>☆</button>
                )
             }
          </div>

@@ -81,7 +81,8 @@
     cursor: pointer;
     font-size: large;
 }
-.btn_star_on{
+
+.btn_star_on {
     position: absolute;
     left: 0px;
     padding: 1px 5px;
@@ -91,6 +92,9 @@
     color: #ffffaa;
     cursor: pointer;
     font-size: large;
+}
+
+.btn_star {
     animation: star 1s forwards
 }
 

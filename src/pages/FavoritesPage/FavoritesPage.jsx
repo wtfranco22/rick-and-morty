@@ -27,7 +27,7 @@ export default function FavoritesPage({ onClose }) {
                             <option onClick={handleFilter} value='Male'>Male</option>
                             <option onClick={handleFilter} value='Female'>Female</option>
                             <option onClick={handleFilter} value='Genderless'>Genderless</option>
-                            <option onClick={handleFilter} value='unkown'>Unknown</option>
+                            <option onClick={handleFilter} value='unknown'>Unknown</option>
                         </select>
                     </label>
                 </div>

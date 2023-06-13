@@ -1,4 +1,4 @@
-import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, GET_CHARACTER, CLEAN_CHARACTER, ADD_CHARACTER, REMOVE_CHARACTER, CLEAN_CHARACTERS, SET_LOADING } from './types';
+import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, GET_CHARACTER, CLEAN_CHARACTER, ADD_CHARACTER, REMOVE_CHARACTER, CLEAN_CHARACTERS, SET_LOADING, SET_ACCESS } from './types';
 import axios from 'axios';
 
 export const addCharacter = (id) => {
@@ -85,6 +85,13 @@ export const cleanCharacter = () => {
 export const setLoading = (bool) =>{
     return {
         type: SET_LOADING,
+        payload: bool
+    }
+}
+
+export const setAccess = (bool) => {
+    return {
+        type: SET_ACCESS,
         payload: bool
     }
 }

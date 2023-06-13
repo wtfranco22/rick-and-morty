@@ -9,7 +9,7 @@ export default function HomePage({ characters, onClose }) {
                   {loading && (
                         <div className={styles.loading}>
                               <div className={styles.spinner}></div>
-                              <div className={styles.loading_text}>Cargando...</div>
+                              <div className={styles.loading_text}>Loading...</div>
                         </div>
                   )}
                   <Cards characters={characters} onClose={onClose} />

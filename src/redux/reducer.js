@@ -1,10 +1,15 @@
-import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, GET_CHARACTER, CLEAN_CHARACTER, ADD_CHARACTER, REMOVE_CHARACTER, CLEAN_CHARACTERS, SET_LOADING } from './types';
+import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, GET_CHARACTER, CLEAN_CHARACTER, ADD_CHARACTER, REMOVE_CHARACTER, CLEAN_CHARACTERS, SET_LOADING, SET_ACCESS } from './types';
 const initialState = {
     allCharacters: [],
     allFavs: [],
     myFavorites: [],
     characterDetail: {},
-    loading: false
+    loading: false,
+    user: {
+        email: 'franco@gmail.com',
+        password: 'franco123',
+        access: false
+    },
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -72,6 +77,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 characterDetail: {}
+            }
+        case SET_ACCESS:
+            return {
+                ...state,
+                user: { ...state.user, access: payload }
             }
         case SET_LOADING:
             return {

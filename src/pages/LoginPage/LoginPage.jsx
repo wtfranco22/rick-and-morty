@@ -2,30 +2,16 @@ import { useEffect, useState } from 'react';
 import validate from '../../utils/Validate';
 import styles from './LoginPage.module.css';
 export default function LoginPage({ login }) {
-    const [userData, setUserData] = useState({
-        email: '',
-        password: '',
-    });
-    const [errors, setErrors] = useState({
-        email: '',
-        password: '',
-    })
+    const [userData, setUserData] = useState({ email: '', password: '' });
+    const [errors, setErrors] = useState({ email: '', password: '' })
     const [send, setSend] = useState(false);
     useEffect(() => {
-        let value = (Object.getOwnPropertyNames(errors).length) === 0;
-        setSend(value);
+        //cada cambio en errors, verificamos para habilitar btn submit del fomulario
+        setSend((Object.getOwnPropertyNames(errors).length) === 0);
     }, [errors])
     const handleInput = (event) => {
-        setUserData({
-            ...userData,
-            [event.target.name]: event.target.value
-        });
-        setErrors(
-            validate({
-                ...userData,
-                [event.target.name]: event.target.value
-            })
-        )
+        setUserData({ ...userData, [event.target.name]: event.target.value });
+        setErrors(validate({ ...userData, [event.target.name]: event.target.value }))
     }
     const handleSumbmit = (event) => {
         event.preventDefault();
