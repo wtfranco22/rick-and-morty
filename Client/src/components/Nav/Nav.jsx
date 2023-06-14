@@ -4,7 +4,7 @@ import styles from './Nav.module.css';
 export default function Nav({ onSearch, logout }) {
     const handleClick = (event) => {
         if (event.target.id === 'random') {
-            let idRandom = Math.floor(Math.random() * 825 + 1)
+            let idRandom = Math.floor(Math.random() * 5 + 1)
             onSearch(idRandom);
         } else {
             logout();

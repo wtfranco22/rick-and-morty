@@ -5,7 +5,8 @@ export const addCharacter = (id) => {
     return async (dispatch) => {
         dispatch(setLoading(true));
         await new Promise(resolve => setTimeout(resolve, 500));
-        await axios.get(`https://rickandmortyapi.com/api/character/${id}`)
+        // await axios.get(`https://rickandmortyapi.com/api/character/${id}`)
+        await axios.get(`http://localhost:3001/rickandmorty/character/${id}`)
             .then((response) =>
                 dispatch({
                     type: ADD_CHARACTER,
@@ -57,7 +58,8 @@ export const getCharacter = (id) => {
     return async function (dispatch) {
         dispatch(setLoading(true));
         await new Promise(resolve => setTimeout(resolve, 2000));
-        await axios.get(`https://rickandmortyapi.com/api/character/${id}`)
+        // await axios.get(`https://rickandmortyapi.com/api/character/${id}`)
+        await axios.get(`http://localhost:3001/rickandmorty/character/${id}`)
             .then((response) =>
                 dispatch({
                     type: GET_CHARACTER,
