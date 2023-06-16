@@ -1,10 +1,18 @@
 import { Link, useLocation } from 'react-router-dom';
-import { SearchBar } from './../index';
+import { SearchBar } from './../';
 import styles from './Nav.module.css';
+import { useSelector } from 'react-redux';
+import { validateSearch } from '../../utils/Validate';
 export default function Nav({ onSearch, logout }) {
+    const characters = useSelector((state)=>state.allCharacters)
     const handleClick = (event) => {
         if (event.target.id === 'random') {
-            let idRandom = Math.floor(Math.random() * 5 + 1)
+            let error = 'error';
+            let idRandom;
+            do{
+                idRandom = Math.floor(Math.random() * 826 + 1);
+                error = validateSearch(idRandom+'',characters);
+            }while(error);
             onSearch(idRandom);
         } else {
             logout();

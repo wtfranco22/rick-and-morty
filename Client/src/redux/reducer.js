@@ -1,15 +1,12 @@
-import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, GET_CHARACTER, CLEAN_CHARACTER, ADD_CHARACTER, REMOVE_CHARACTER, CLEAN_CHARACTERS, SET_LOADING, SET_ACCESS } from './types';
+import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, GET_CHARACTER, CLEAN_CHARACTER, ADD_CHARACTER, REMOVE_CHARACTER, CLEAN_CHARACTERS, SET_LOADING, SHOW_ERROR, SET_ERROR, LOGIN_SUCCESS, LOGOUT } from './types';
 const initialState = {
     allCharacters: [],
     allFavs: [],
     myFavorites: [],
     characterDetail: {},
     loading: false,
-    user: {
-        email: 'franco@gmail.com',
-        password: 'franco123',
-        access: false
-    },
+    error: null,
+    access: false
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -78,16 +75,36 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 characterDetail: {}
             }
-        case SET_ACCESS:
-            return {
-                ...state,
-                user: { ...state.user, access: payload }
-            }
         case SET_LOADING:
             return {
                 ...state,
                 loading: payload
             }
+        case SHOW_ERROR:
+            return {
+                ...state,
+                error: payload
+            }
+        case SET_ERROR:
+            return {
+                ...state,
+                error: null
+            }
+        case LOGIN_SUCCESS:
+            return {
+                ...state,
+                access: true
+            }
+        case LOGOUT: {
+            return {
+                ...state,
+                allCharacters: [],
+                allFavs: [],
+                myFavorites: [],
+                characterDetail: {},
+                access: false
+            }
+        }
         default:
             return {
                 ...state

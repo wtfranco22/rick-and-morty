@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import validate from '../../utils/Validate';
+import { validateForm } from '../../utils/Validate';
 import styles from './LoginPage.module.css';
 export default function LoginPage({ login }) {
     const [userData, setUserData] = useState({ email: '', password: '' });
@@ -11,7 +11,7 @@ export default function LoginPage({ login }) {
     }, [errors])
     const handleInput = (event) => {
         setUserData({ ...userData, [event.target.name]: event.target.value });
-        setErrors(validate({ ...userData, [event.target.name]: event.target.value }))
+        setErrors(validateForm({ ...userData, [event.target.name]: event.target.value }))
     }
     const handleSumbmit = (event) => {
         event.preventDefault();
