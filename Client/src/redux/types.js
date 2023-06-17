@@ -1,30 +1,16 @@
-const ADD_CHARACTER = 'ADD_CHARACTER';
-const ADD_FAV = 'ADD_FAV';
-const REMOVE_CHARACTER = 'REMOVE_CHARACTER';
-const REMOVE_FAV = 'REMOVE_FAV';
-const FILTER = 'FILTER';
-const ORDER = 'ORDER';
-const GET_CHARACTER = 'GET_CHARACTER';
-const CLEAN_CHARACTERS = 'CLEAN_CHARACTERS';
-const CLEAN_CHARACTER = 'CLEAN_CHARACTER';
-const SET_LOADING= 'SET_LOADING';
-const SHOW_ERROR = 'SHOW_ERROR';
-const SET_ERROR = 'SET_ERROR';
-const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-const LOGOUT = 'LOGOUT';
-module.exports = {
-    ADD_CHARACTER,
-    ADD_FAV,
-    REMOVE_CHARACTER,
-	REMOVE_FAV,
-    FILTER,
-    ORDER,
-    GET_CHARACTER,
-    CLEAN_CHARACTERS,
-    CLEAN_CHARACTER,
-    SET_LOADING,
-    SHOW_ERROR,
-    SET_ERROR,
-    LOGIN_SUCCESS,
-    LOGOUT
-}
+/**characters */
+export const ADD_CHARACTER = 'ADD_CHARACTER';
+export const GET_CHARACTER = 'GET_CHARACTER';
+export const REMOVE_CHARACTER = 'REMOVE_CHARACTER';
+export const CLEAN_CHARACTER = 'CLEAN_CHARACTER';
+/**favorites */
+export const ADD_FAV = 'ADD_FAV';
+export const REMOVE_FAV = 'REMOVE_FAV';
+export const FILTER = 'FILTER';
+export const ORDER = 'ORDER';
+/**session */
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGOUT = 'LOGOUT';
+/**complements */
+export const SET_LOADING= 'SET_LOADING';
+export const SET_ERROR = 'SET_ERROR';

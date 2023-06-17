@@ -1,5 +1,9 @@
 import styles from './ErrorPage.module.css'
 import video from './../../assets/images/4.mp4'
+/**
+ * Componente que muestra un video cuando hubo error en lectura de pagina
+ * @returns {JSX.Element} Elemento JSX que muestra la pagina de error
+ */
 export default function ErrorPage() {
     return (
         <div>

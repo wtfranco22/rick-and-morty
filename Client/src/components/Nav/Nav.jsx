@@ -3,22 +3,31 @@ import { SearchBar } from './../';
 import styles from './Nav.module.css';
 import { useSelector } from 'react-redux';
 import { validateSearch } from '../../utils/Validate';
+
+/**
+ * Componente que muestra la barra de navegacion del sitio web
+ * @param {function} onSearch - Funcion para buscar un character por id
+ * @param {function} logout - Funcion que permite cerrar sesion al usuario
+ * @returns {JSX.Element} elemento JSX que muestra el mensaje
+ */
 export default function Nav({ onSearch, logout }) {
-    const characters = useSelector((state)=>state.allCharacters)
+    const characters = useSelector((state) => state.allCharacters)
+    const location = useLocation();
     const handleClick = (event) => {
+        //handleClick detecta todos los clicks
         if (event.target.id === 'random') {
             let error = 'error';
             let idRandom;
-            do{
+            do {
+                // buscar un id siempre hasta que no retorne error
                 idRandom = Math.floor(Math.random() * 826 + 1);
-                error = validateSearch(idRandom+'',characters);
-            }while(error);
+                error = validateSearch(idRandom + '', characters);
+            } while (error);
             onSearch(idRandom);
         } else {
             logout();
         }
     }
-    const location = useLocation();
     return (
         <>
             <div className={styles.container}>
@@ -32,8 +41,7 @@ export default function Nav({ onSearch, logout }) {
                     Favs
                 </Link>
                 {
-                    location.pathname === '/Home'
-                    &&
+                    location.pathname === '/Home' &&
                     <>
                         <div className={styles.random}>
                             <button onClick={handleClick} className={styles.btn} id='random'></button>

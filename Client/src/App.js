@@ -1,10 +1,9 @@
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { HomePage, AboutPage, DetailPage, ErrorPage, LoginPage, FavoritesPage } from './pages'
-import { Nav } from './components';
+import { Nav, MsgError } from './components';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCharacter, loginUser, logoutUser, removeCharacter, setError } from './redux/actions';
-import MsgError from './components/Msg/MsgError';
 
 function App() {
    const characters = useSelector((state) => state.allCharacters); //obtengo todos desde el estado global
@@ -13,12 +12,12 @@ function App() {
    const location = useLocation(); //obtengo nombre de la ruta donde estoy
    const navigate = useNavigate(); //utilizado para redireccionar
    const dispatch = useDispatch(); //utilizado para despachar acciones al estado global
-   const onSearch = (id) => dispatch(addCharacter(id));
+   const onSearch = (id) => dispatch(addCharacter(id)); 
    const onClose = (id) => dispatch(removeCharacter(id)); // id proviene de Home/FavoritesPage para eliminar character, despacha accion a redux
-   const login = (userData) => dispatch(loginUser(userData)) && access && navigate('/Home')
+   const login = (user) => dispatch(loginUser(user)) && access && navigate('/Home')
    const logout = () => dispatch(logoutUser()) && navigate('/');
    useEffect(() => {
-      // cada vez que cambie navigate o user.access ingresamos a la fn
+      // cada vez que cambie navigate o access ingresamos a la funcion
       !access && navigate('/');
    }, [navigate, access]);
    const closeError = () => dispatch(setError());
@@ -26,6 +25,7 @@ function App() {
       <>
          {location.pathname !== '/' && <Nav onSearch={onSearch} logout={logout} />}
          {error && <MsgError error={error} closeMsg={closeError} />}
+         {/* hacemos renderizado condicional, fuera de Routes para mostrar en todas las rutas */}
          <Routes>
             <Route path='/' element={<LoginPage login={login} />} />
             <Route path='/Home' element={<HomePage characters={characters} onClose={onClose} />} />

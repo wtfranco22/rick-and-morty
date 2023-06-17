@@ -2,15 +2,16 @@ import { Cards } from './../../components';
 import styles from './FavoritesPAge.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterCards, orderCards } from '../../redux/actions';
-// import { useState } from 'react';
 
+/**
+ * Componente que muestra la pagina de favoritos
+ * @param {function} onClose - Funcion de cierre para las tarjetas
+ * @returns {JSX.Element} Elemento JSX que muestra la página de favoritos
+ */
 export default function FavoritesPage({ onClose }) {
     const dispatch = useDispatch();
     const favorites = useSelector((state) => state.myFavorites)
-    console.log(favorites)
-    // const [aux, setAux] = useState(false);
     const handleOrder = (event) => {
-        // setAux(true);
         dispatch(orderCards(event.target.value));
     }
     const handleFilter = (event) => {

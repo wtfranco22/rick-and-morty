@@ -1,4 +1,17 @@
-import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, GET_CHARACTER, CLEAN_CHARACTER, ADD_CHARACTER, REMOVE_CHARACTER, CLEAN_CHARACTERS, SET_LOADING, SHOW_ERROR, SET_ERROR, LOGIN_SUCCESS, LOGOUT } from './types';
+import {
+    /**characters */
+    ADD_CHARACTER, REMOVE_CHARACTER, GET_CHARACTER, CLEAN_CHARACTER,
+
+    /**favorites */
+    ADD_FAV, REMOVE_FAV, FILTER, ORDER,
+
+    /**complements */
+    SET_LOADING, SET_ERROR,
+
+    /**session */
+    LOGIN_SUCCESS, LOGOUT
+} from './types';
+
 const initialState = {
     allCharacters: [],
     allFavs: [],
@@ -10,26 +23,44 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
+    // reducer tiene 1 parametro inicial y luego action = {type, payload} para determinar acciones a realizar
     switch (type) {
+        /**characters actions*/
         case ADD_CHARACTER:
             return {
                 ...state,
                 allCharacters: [...state.allCharacters, payload]
-            }
+            };
+
+        case REMOVE_CHARACTER:
+            const favs = state.myFavorites.filter((character) => character.id !== Number(payload));
+            return {
+                ...state,
+                allCharacters: state.allCharacters.filter((character) => character.id !== Number(payload)),
+                myFavorites: favs,
+                allFavs: favs
+            };
+
+        case GET_CHARACTER:
+            return {
+                ...state,
+                characterDetail: state.allCharacters.find((character) => character.id === payload)
+            };
+
+        case CLEAN_CHARACTER:
+            return {
+                ...state,
+                characterDetail: {}
+            };
+
+        /**favorites actions */
         case ADD_FAV:
             return {
                 ...state,
                 myFavorites: [...state.myFavorites, payload],
                 allFavs: [...state.allFavs, payload]
             };
-        case REMOVE_CHARACTER:
-            let favs = state.myFavorites.filter((character) => character.id !== Number(payload));
-            return {
-                ...state,
-                allCharacters: state.allCharacters.filter((character) => character.id !== Number(payload)),
-                myFavorites: favs,
-                allFavs: favs
-            }
+
         case REMOVE_FAV:
             let newFavs = state.myFavorites.filter((character) => character.id !== Number(payload));
             return {
@@ -37,6 +68,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 myFavorites: newFavs,
                 allFavs: newFavs
             };
+
         case FILTER:
             let characters;
             if (payload === 'all') {
@@ -48,6 +80,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 myFavorites: characters
             };
+
         case ORDER:
             let orden = [...state.myFavorites];
             if (payload === 'A') {
@@ -58,58 +91,40 @@ const rootReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 myFavorites: orden
-            }
-        case GET_CHARACTER:
-            return {
-                ...state,
-                characterDetail: payload
-            }
-        case CLEAN_CHARACTERS:
-            return {
-                allCharacters: [],
-                myFavorites: [],
-                characterDetail: {}
-            }
-        case CLEAN_CHARACTER:
-            return {
-                ...state,
-                characterDetail: {}
-            }
+            };
+
+        /**complements */
         case SET_LOADING:
             return {
                 ...state,
                 loading: payload
-            }
-        case SHOW_ERROR:
-            return {
-                ...state,
-                error: payload
-            }
+            };
+
         case SET_ERROR:
             return {
                 ...state,
-                error: null
-            }
+                error: payload
+            };
+
+        /**session */
         case LOGIN_SUCCESS:
             return {
                 ...state,
                 access: true
-            }
-        case LOGOUT: {
+            };
+
+        case LOGOUT:
             return {
-                ...state,
                 allCharacters: [],
                 allFavs: [],
                 myFavorites: [],
-                characterDetail: {},
                 access: false
-            }
-        }
+            };
+
         default:
             return {
                 ...state
             };
     }
 }
-
 export default rootReducer;

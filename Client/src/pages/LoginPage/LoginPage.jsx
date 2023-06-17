@@ -1,18 +1,31 @@
 import { useEffect, useState } from 'react';
 import { validateForm } from '../../utils/Validate';
 import styles from './LoginPage.module.css';
+/**
+ * Componente que muestra el formulario para iniciar sesion el usuario
+ * @param {function} login - Funcion para iniciar sesion una vez validado los datos
+ * @returns {JSX.Element} elemento JSX que muestra el mensaje
+ */
 export default function LoginPage({ login }) {
     const [userData, setUserData] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({ email: '', password: '' })
     const [send, setSend] = useState(false);
     useEffect(() => {
-        //cada cambio en errors, verificamos para habilitar btn submit del fomulario
+        //cada cambio en errors, verificamos para habilitar boton submit del fomulario
         setSend((Object.getOwnPropertyNames(errors).length) === 0);
     }, [errors])
+    /**
+     * Maneja el evento de cambio de entrada en los campos del formulario.
+     * @param {Event} event - Evento de cambio de entrada.
+     */
     const handleInput = (event) => {
         setUserData({ ...userData, [event.target.name]: event.target.value });
         setErrors(validateForm({ ...userData, [event.target.name]: event.target.value }))
     }
+    /**
+     * Maneja el evento de envío del formulario.
+     * @param {Event} event - Evento de envío del formulario.
+     */
     const handleSumbmit = (event) => {
         event.preventDefault();
         login(userData);
