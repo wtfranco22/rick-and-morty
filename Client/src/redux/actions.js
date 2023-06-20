@@ -20,10 +20,9 @@ import axios from 'axios';
  * @returns accion de redux para agregar el personaje
  */
 export const addCharacter = (id) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setLoading(true));
-        // new Promise(resolve => setTimeout(resolve, 500));
-        axios.get(`http://localhost:3001/rickandmorty/character/${id}`)
+        await axios.get(`http://localhost:3001/rickandmorty/character/${id}`)
             .then((response) =>
                 dispatch({
                     type: ADD_CHARACTER,
@@ -153,8 +152,13 @@ export const setError = (message) => {
  * @returns accion redux para iniciar sesion
  */
 export const loginUser = (user) => {
-    return (user.email === 'franco@gmail.com' && user.password === 'franco123') ?
-        { type: LOGIN_SUCCESS } : { type: SET_ERROR, payload: 'incorrect data' }
+    return (dispatch) => {
+        if (user.email === 'franco@gmail.com' && user.password === 'franco123') {
+            dispatch({ type: LOGIN_SUCCESS })
+        } else {
+            dispatch({ type: SET_ERROR, payload: 'incorrect data' })
+        }
+    }
 }
 
 /**

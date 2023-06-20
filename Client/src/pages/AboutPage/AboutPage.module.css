@@ -10,16 +10,20 @@
     width: 25%;
     height: 50vh;
     display: flex;
-    background-image: url('../../assets/images/profile.jpeg');
-    background-size: cover;
+    background-image: url('../../assets/images/profile-henry.png');
+    background-color: #ffff01;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
     border-radius: 5px;
+    box-shadow: 20px 0 30px rgba(0, 255, 0, 0.5);
 
 }
 .description {
     width: 75%;
     height: 50vh;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: -20px 0 30px rgba(0, 255, 0, 0.5);
     color: #ffffaa;
     text-align: center;
 }

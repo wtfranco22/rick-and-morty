@@ -11,7 +11,8 @@
     height: 50vh;
     display: flex;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 20px 0 30px rgba(0, 255, 0, 0.5);
 }
 .description{
     width: 50%;
@@ -21,5 +22,6 @@
     justify-content: center;
     align-items: center;
     color: #ffffaa;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: -20px 0 30px rgba(0, 255, 0, 0.5);
 }

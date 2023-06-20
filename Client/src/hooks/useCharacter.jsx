@@ -8,7 +8,7 @@ const useCharacter = () => {
     const dispatch = useDispatch();
     const character = useSelector((state) => state.characterDetail)
     useEffect(() => {
-        dispatch(getCharacter(id));
+        dispatch(getCharacter(Number(id)));
         return () => { dispatch(cleanCharacter()) }
     }, [id, dispatch]);
     return character
