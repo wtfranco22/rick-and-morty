@@ -57,16 +57,15 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case ADD_FAV:
             return {
                 ...state,
-                myFavorites: [...state.myFavorites, payload],
-                allFavs: [...state.allFavs, payload]
+                myFavorites: payload,
+                allFavs: payload
             };
 
         case REMOVE_FAV:
-            let newFavs = state.myFavorites.filter((character) => character.id !== Number(payload));
             return {
                 ...state,
-                myFavorites: newFavs,
-                allFavs: newFavs
+                myFavorites: payload,
+                allFavs: payload
             };
 
         case FILTER:
@@ -110,10 +109,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                access: true
+                access: true,
+                allCharacters: payload.favs,
+                allFavs: payload.favs,
+                myFavorites: payload.favs,
             };
 
         case LOGOUT:
+            localStorage.removeItem('token');
             return {
                 allCharacters: [],
                 allFavs: [],

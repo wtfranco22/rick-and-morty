@@ -78,9 +78,15 @@ export const cleanCharacter = () => {
  * @returns accion de redux para agregar el personaje a favoritos
  */
 export const addFav = (character) => {
-    return {
-        type: ADD_FAV,
-        payload: character
+    const endpoint = 'http://localhost:3001/rickandmorty/fav';
+    return async (dispatch) => {
+        try {
+            const TOKEN = localStorage.getItem('token');
+            let response = await axios.post(endpoint, { character: character }, { headers: { Authorization: `Bearer ${TOKEN}` } });
+            return dispatch({ type: ADD_FAV, payload: response.data })
+        } catch (error) {
+            return dispatch({ type: SET_ERROR, payload: error.message })
+        }
     }
 }
 
@@ -90,9 +96,15 @@ export const addFav = (character) => {
  * @returns accion redux para eliminar el personaje de favoritos
  */
 export const removeFav = (id) => {
-    return {
-        type: REMOVE_FAV,
-        payload: id
+    const endpoint = `http://localhost:3001/rickandmorty/fav/${id}`;
+    return async (dispatch) => {
+        try {
+            const TOKEN = localStorage.getItem('token');
+            let response = await axios.delete(endpoint, { headers: { Authorization: `Bearer ${TOKEN}` } })
+            return dispatch({ type: REMOVE_FAV, payload: response.data })
+        } catch (error) {
+            return dispatch({ type: SET_ERROR, payload: error.message })
+        }
     }
 }
 
@@ -152,11 +164,15 @@ export const setError = (message) => {
  * @returns accion redux para iniciar sesion
  */
 export const loginUser = (user) => {
-    return (dispatch) => {
-        if (user.email === 'franco@gmail.com' && user.password === 'franco123') {
-            dispatch({ type: LOGIN_SUCCESS })
-        } else {
-            dispatch({ type: SET_ERROR, payload: 'incorrect data' })
+    const { email, password } = user;
+    return async (dispatch) => {
+        try {
+            const URL = `http://localhost:3001/rickandmorty/login?email=${email}&password=${password}`;
+            let response = await axios(URL);
+            localStorage.setItem('token', response.data.token);
+            return dispatch({ type: LOGIN_SUCCESS, payload: response.data })
+        } catch {
+            return dispatch({ type: SET_ERROR, payload: 'Email or Password incorrect' })
         }
     }
 }
@@ -167,4 +183,18 @@ export const loginUser = (user) => {
  */
 export const logoutUser = () => {
     return { type: LOGOUT }
+}
+
+export const reloadAccess = () => {
+    return async (dispatch) => {
+        try {
+            const TOKEN = localStorage.getItem('token');
+            const URL = `http://localhost:3001/rickandmorty/get-favs`;
+            let response = await axios.post(URL, null, { headers: { Authorization: `Bearer ${TOKEN}` } });
+            return dispatch({ type: LOGIN_SUCCESS, payload: response.data });
+        } catch (error) {
+            return dispatch({ type: SET_ERROR, payload: error.message })
+        }
+    }
+    // return { type: SET_ACCESS, payload: bool }
 }

@@ -3,23 +3,26 @@ import { HomePage, AboutPage, DetailPage, ErrorPage, LoginPage, FavoritesPage } 
 import { Nav, MsgError } from './components';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCharacter, loginUser, logoutUser, removeCharacter, setError } from './redux/actions';
+import { addCharacter, loginUser, logoutUser, reloadAccess, removeCharacter, setError } from './redux/actions';
 
 function App() {
-   const characters = useSelector((state) => state.allCharacters); //obtengo todos desde el estado global
-   const error = useSelector((state) => state.error);
-   const access = useSelector((state) => state.access);
+   const { allCharacters: characters, error, access } = useSelector((state) => state);
    const location = useLocation(); //obtengo nombre de la ruta donde estoy
    const navigate = useNavigate(); //utilizado para redireccionar
    const dispatch = useDispatch(); //utilizado para despachar acciones al estado global
-   const onSearch = (id) => dispatch(addCharacter(id));
-   const onClose = (id) => dispatch(removeCharacter(id)); // id proviene de Home/FavoritesPage para eliminar character, despacha accion a redux
-   const login = (user) => dispatch(loginUser(user));
+   const onSearch = addCharacter;
+   const onClose = removeCharacter; // id proviene de Home/FavoritesPage para eliminar character, despacha accion a redux
+   const login = (user) => {
+      dispatch(loginUser(user))
+         .then(() => navigate('/Home'))
+         .catch(() => navigate('/'))
+   };
    const logout = () => dispatch(logoutUser());
    useEffect(() => {
-      // cada vez que cambie navigate o access ingresamos a la funcion
-      access ? navigate('/Home') : navigate('/');
-   }, [access]);
+      const token = localStorage.getItem('token');
+      if (token && !access) dispatch(reloadAccess());
+      if (!access && localStorage.getItem('token') === null && location.pathname !== '/') navigate('/');
+   }, [access, dispatch, location.pathname, navigate]);
    const closeError = () => dispatch(setError());
    return (
       <>
