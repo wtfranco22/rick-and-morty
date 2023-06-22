@@ -10,8 +10,8 @@ function App() {
    const location = useLocation(); //obtengo nombre de la ruta donde estoy
    const navigate = useNavigate(); //utilizado para redireccionar
    const dispatch = useDispatch(); //utilizado para despachar acciones al estado global
-   const onSearch = addCharacter;
-   const onClose = removeCharacter; // id proviene de Home/FavoritesPage para eliminar character, despacha accion a redux
+   const onSearch = (id) => dispatch(addCharacter(id));
+   const onClose = (id) => dispatch(removeCharacter(id)); // id proviene de Home/FavoritesPage para eliminar character, despacha accion a redux
    const login = (user) => {
       dispatch(loginUser(user))
          .then(() => navigate('/Home'))
