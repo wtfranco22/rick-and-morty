@@ -8,7 +8,7 @@ export function Card({ character, onClose }) {
    const [isFav, setIsFav] = useState(false);
    const [animate, setAnimate] = useState(false);
    const dispatch = useDispatch();
-   const favorites = useSelector((state) => state.myFavorites)
+   const favorites = useSelector((state) => state.allFavs)
    useEffect(() => {
       favorites.forEach((fav) => {
          if (fav.id === character.id) {

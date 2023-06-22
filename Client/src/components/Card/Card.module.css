@@ -34,7 +34,7 @@
     padding: 5%;
     border-radius: 5%;
     object-fit: cover;
-    opacity: .3;
+    opacity: .6;
 }
 
 .card:hover .avatar {
