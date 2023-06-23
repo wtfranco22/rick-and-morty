@@ -29,14 +29,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case ADD_CHARACTER:
             return {
                 ...state,
-                allCharacters: [...state.allCharacters, payload]
+                allCharacters: [payload, ...state.allCharacters]
             };
 
         case REMOVE_CHARACTER:
-            const favs = state.myFavorites.filter((character) => character.id !== Number(payload));
+            const favs = state.myFavorites.filter((character) => Number(character.id) !== Number(payload));
             return {
                 ...state,
-                allCharacters: state.allCharacters.filter((character) => character.id !== Number(payload)),
+                allCharacters: state.allCharacters.filter((character) => Number(character.id) !== Number(payload)),
                 myFavorites: favs,
                 allFavs: favs
             };
@@ -44,7 +44,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case GET_CHARACTER:
             return {
                 ...state,
-                characterDetail: state.allCharacters.find((character) => Number(character.id) === payload)
+                characterDetail: state.allCharacters.find((character) => Number(character.id) === Number(payload))
             };
 
         case CLEAN_CHARACTER:

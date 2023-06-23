@@ -21,20 +21,15 @@ import axios from 'axios';
  */
 export const addCharacter = (id) => {
     return async (dispatch) => {
-        dispatch(setLoading(true));
-        await axios.get(`http://localhost:3001/rickandmorty/character/${id}`)
-            .then((response) =>
-                dispatch({
-                    type: ADD_CHARACTER,
-                    payload: response.data
-                })
-            )
-            .catch((error) =>
-                dispatch(setError(error.message))
-            )
-            .finally(() => {
-                dispatch(setLoading(false))
-            })
+        try {
+            dispatch(setLoading(true));
+            const { data } = await axios(`http://localhost:3001/rickandmorty/character/${id}`);
+            dispatch({ type: ADD_CHARACTER, payload: data });
+        } catch (error) {
+            dispatch(setError(error.message));
+        } finally {
+            setTimeout(() => dispatch(setLoading(false)), 750);
+        }
     }
 }
 
@@ -44,11 +39,14 @@ export const addCharacter = (id) => {
  * @returns accion de redux para eliminar el personaje
  */
 export const removeCharacter = (id) => {
-    return {
-        type: REMOVE_CHARACTER,
-        payload: id
-    }
-}
+    return async (dispatch) => {
+        dispatch(setLoading(true));
+        setTimeout(() => {
+            dispatch({ type: REMOVE_CHARACTER, payload: id });
+            dispatch(setLoading(false));
+        }, 750);
+    };
+};
 
 /**
  * obtiene un personaje que se encuentra en nuestro estado global
@@ -56,9 +54,12 @@ export const removeCharacter = (id) => {
  * @returns accion de redux para obtener el personaje
  */
 export const getCharacter = (id) => {
-    return {
-        type: GET_CHARACTER,
-        payload: id
+    return async (dispatch) => {
+        dispatch(setLoading(true));
+        setTimeout(() => {
+            dispatch({ type: GET_CHARACTER, payload: id });
+            dispatch(setLoading(false));
+        }, 2000);
     }
 }
 /**
@@ -78,14 +79,14 @@ export const cleanCharacter = () => {
  * @returns accion de redux para agregar el personaje a favoritos
  */
 export const addFav = (character) => {
-    const endpoint = 'http://localhost:3001/rickandmorty/fav';
     return async (dispatch) => {
         try {
+            const endpoint = 'http://localhost:3001/rickandmorty/fav';
             const TOKEN = localStorage.getItem('token');
             let response = await axios.post(endpoint, { character: character }, { headers: { Authorization: `Bearer ${TOKEN}` } });
-            return dispatch({ type: ADD_FAV, payload: response.data })
+            dispatch({ type: ADD_FAV, payload: response.data })
         } catch (error) {
-            return dispatch({ type: SET_ERROR, payload: error.message })
+            dispatch({ type: SET_ERROR, payload: error.message })
         }
     }
 }
@@ -96,14 +97,17 @@ export const addFav = (character) => {
  * @returns accion redux para eliminar el personaje de favoritos
  */
 export const removeFav = (id) => {
-    const endpoint = `http://localhost:3001/rickandmorty/fav/${id}`;
     return async (dispatch) => {
         try {
+            dispatch(setLoading(true));
+            const endpoint = `http://localhost:3001/rickandmorty/fav/${id}`;
             const TOKEN = localStorage.getItem('token');
             let response = await axios.delete(endpoint, { headers: { Authorization: `Bearer ${TOKEN}` } })
-            return dispatch({ type: REMOVE_FAV, payload: response.data })
+            dispatch({ type: REMOVE_FAV, payload: response.data });
         } catch (error) {
-            return dispatch({ type: SET_ERROR, payload: error.message })
+            dispatch({ type: SET_ERROR, payload: error.message });
+        } finally {
+            setTimeout(() => dispatch(setLoading(false)), 250);
         }
     }
 }
@@ -114,9 +118,12 @@ export const removeFav = (id) => {
  * @returns accion de redux para filtrar los personajes
  */
 export const filterCards = (gender) => {
-    return {
-        type: FILTER,
-        payload: gender
+    return async (dispatch) => {
+        dispatch(setLoading(true));
+        setTimeout(() => {
+            dispatch({ type: FILTER, payload: gender });
+            dispatch(setLoading(false));
+        }, 250);
     }
 }
 
@@ -126,9 +133,12 @@ export const filterCards = (gender) => {
  * @returns accion de redux para ordenar los personajes
  */
 export const orderCards = (order) => {
-    return {
-        type: ORDER,
-        payload: order
+    return async (dispatch) => {
+        dispatch(setLoading(true));
+        setTimeout(() => {
+            dispatch({ type: ORDER, payload: order });
+            dispatch(setLoading(false));
+        }, 250);
     }
 }
 
@@ -164,15 +174,18 @@ export const setError = (message) => {
  * @returns accion redux para iniciar sesion
  */
 export const loginUser = (user) => {
-    const { email, password } = user;
     return async (dispatch) => {
         try {
+            const { email, password } = user;
+            dispatch(setLoading(true));
             const URL = `http://localhost:3001/rickandmorty/login?email=${email}&password=${password}`;
-            let response = await axios(URL);
-            localStorage.setItem('token', response.data.token);
-            return dispatch({ type: LOGIN_SUCCESS, payload: response.data })
+            const { data } = await axios(URL);
+            localStorage.setItem('token', data.token);
+            dispatch({ type: LOGIN_SUCCESS, payload: data });
         } catch {
-            return dispatch({ type: SET_ERROR, payload: 'Email or Password incorrect' })
+            dispatch({ type: SET_ERROR, payload: 'Email or Password incorrect' });
+        } finally {
+            setTimeout(() => dispatch(setLoading(false)), 750);
         }
     }
 }
@@ -188,13 +201,15 @@ export const logoutUser = () => {
 export const reloadAccess = () => {
     return async (dispatch) => {
         try {
+            dispatch(setLoading(true));
             const TOKEN = localStorage.getItem('token');
             const URL = `http://localhost:3001/rickandmorty/get-favs`;
             let response = await axios.post(URL, null, { headers: { Authorization: `Bearer ${TOKEN}` } });
-            return dispatch({ type: LOGIN_SUCCESS, payload: response.data });
+            dispatch({ type: LOGIN_SUCCESS, payload: response.data });
         } catch (error) {
-            return dispatch({ type: SET_ERROR, payload: error.message })
+            dispatch({ type: SET_ERROR, payload: error.message })
+        } finally {
+            setTimeout(() => dispatch(setLoading(false)), 750);
         }
     }
-    // return { type: SET_ACCESS, payload: bool }
 }
