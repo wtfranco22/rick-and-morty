@@ -14,7 +14,7 @@ export default function DetailPage() {
                 <>
                     <div className={styles.loading} >
                         <div className={styles.spinner}></div>
-                        <div className={styles.loading_text}>Cargando...</div>
+                        <div className={styles.loading_text}>Loading...</div>
                     </div>
                     <div className={styles.loadingContainer}>
                         <div className={styles.bgContainer}></div>
