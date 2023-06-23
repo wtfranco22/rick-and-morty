@@ -20,7 +20,7 @@ function App() {
    const logout = () => dispatch(logoutUser());
    useEffect(() => {
       const token = localStorage.getItem('token');
-      if (token && !access) dispatch(reloadAccess());
+      if (token && !access) dispatch(reloadAccess()).then(location.pathname==='/' && navigate('/Home'));
       if (!access && localStorage.getItem('token') === null && location.pathname !== '/') navigate('/');
    }, [access, dispatch, location.pathname, navigate]);
    const closeError = () => dispatch(setError());
