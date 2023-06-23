@@ -2,6 +2,7 @@ import { Cards } from './../../components';
 import styles from './FavoritesPAge.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterCards, orderCards } from '../../redux/actions';
+import { useEffect } from 'react';
 
 /**
  * Componente que muestra la pagina de favoritos
@@ -10,7 +11,10 @@ import { filterCards, orderCards } from '../../redux/actions';
  */
 export default function FavoritesPage({ onClose }) {
     const dispatch = useDispatch();
-    const favorites = useSelector((state) => state.myFavorites)
+    const favorites = useSelector((state) => state.myFavorites);
+    useEffect(() => {
+        return () => { dispatch(filterCards('all')) }
+    }, [dispatch]);
     const handleOrder = (event) => {
         dispatch(orderCards(event.target.value));
     }
