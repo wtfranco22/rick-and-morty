@@ -44,7 +44,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case GET_CHARACTER:
             return {
                 ...state,
-                characterDetail: state.allCharacters.find((character) => character.id === payload)
+                characterDetail: state.allCharacters.find((character) => Number(character.id) === payload)
             };
 
         case CLEAN_CHARACTER:
