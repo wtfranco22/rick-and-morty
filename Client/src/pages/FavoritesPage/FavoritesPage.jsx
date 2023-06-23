@@ -11,6 +11,7 @@ import { useEffect } from 'react';
  */
 export default function FavoritesPage({ onClose }) {
     const dispatch = useDispatch();
+    const loading = useSelector((state)=>state.loading);
     const favorites = useSelector((state) => state.myFavorites);
     useEffect(() => {
         return () => { dispatch(filterCards('all')) }
@@ -23,6 +24,12 @@ export default function FavoritesPage({ onClose }) {
     }
     return (
         <>
+            {loading && (
+                <div className={styles.loading}>
+                    <div className={styles.spinner}></div>
+                    <div className={styles.loading_text}>Loading...</div>
+                </div>
+            )}
             <div className={styles.container}>
                 <div className={styles.filter}>
                     <label className={styles.label}>
