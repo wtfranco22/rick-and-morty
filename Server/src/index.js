@@ -21,7 +21,7 @@ server.use((req, res, next) => {
 });
 server.use((req, res, next) => {
     const token = req.headers.authorization;
-    const indexUser = token ? users.findIndex((user) => user.token === token) : {};
+    const indexUser = token ? users.findIndex((user) => user.token === token) : -1 ;
     req.indexUser = indexUser;
     next();
 });

@@ -3,7 +3,44 @@
     "id": 1,
     "email": "franco@gmail.com",
     "password": "franco123",
-    "token": "",
-    "favs": []
+    "token": "Bearer 6mhnxallb4n",
+    "favs": [
+      {
+        "id": "646",
+        "name": "Steve",
+        "gender": "Male",
+        "species": "Alien",
+        "origin": "Glorzo Asteroid",
+        "image": "https://rickandmortyapi.com/api/character/avatar/646.jpeg",
+        "status": "Dead"
+      },
+      {
+        "id": "564",
+        "name": "Talking Cat",
+        "gender": "Male",
+        "species": "Animal",
+        "origin": "unknown",
+        "image": "https://rickandmortyapi.com/api/character/avatar/564.jpeg",
+        "status": "Alive"
+      },
+      {
+        "id": "157",
+        "name": "Hole in the Wall Where the Men Can See it All",
+        "gender": "Genderless",
+        "species": "unknown",
+        "origin": "unknown",
+        "image": "https://rickandmortyapi.com/api/character/avatar/157.jpeg",
+        "status": "unknown"
+      },
+      {
+        "id": "743",
+        "name": "Alyson Hannigan",
+        "gender": "Female",
+        "species": "Alien",
+        "origin": "unknown",
+        "image": "https://rickandmortyapi.com/api/character/avatar/743.jpeg",
+        "status": "Dead"
+      }
+    ]
   }
 ]
