@@ -10,20 +10,20 @@
 
 .input:focus {
     outline: none;
-    border-color: #1d8e51;
+    border-color: #036902;
 }
 
 .btn {
     padding: 8px 16px;
-    background-color: #1d8e51;
-    border: 1px solid #1d8e51;
+    background-color: #036902;
+    border: 1px solid #036902;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-    color: #1d8e51;
+    color: #036902;
     background-color: #000000;
-    border: 1px solid #1d8e51;
+    border: 1px solid #036902;
 }

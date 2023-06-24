@@ -12,18 +12,24 @@
 
 .msgContent {
     position: relative;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.774)), url('../../assets/images/44.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     background-color: #000;
     border: 2px solid #ffffaa;
     padding: 5%;
-    border-radius: 5%;
-    min-width: 20%;
-    min-height: 20%;
+    border-radius: 20px;
+    min-width: 50%;
+    min-height: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .errorMessage {
+    position: absolute;
+    bottom: 0px;
     font-size: xx-large;
     color: #ffffaa;
 }
@@ -32,7 +38,7 @@
     position: absolute;
     top: 0px;
     right: 0px;
-    padding: 10px;
+    padding: 5px;
     border-radius: 50%;
     border: 2px solid #ffffaa;
     background-color: #000;

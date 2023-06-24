@@ -38,14 +38,14 @@ export function Card({ character, onClose }) {
    }
    return (
       <>
-         <div className={styles.card}>
+         <div className={`${styles.card} ${isFav ? styles.card_favorite : ''}`}>
             <Link to={'/Detail/' + character.id} className={styles.textLink}>
-               <img className={styles.avatar} src={character.image} alt={character.name} />
+               <img className={`${styles.avatar} ${isFav ? styles.avatar_fav:''}`} src={character.image} alt={character.name} />
                <div className={styles.details}>
                   <h3 className={styles.name}>{character.name.split(' ', 1)}</h3>
                </div>
             </Link>
-            {location.pathname === '/Home' && <button className={styles.btn_close} name='btn_close' onClick={handleClick}>⨉</button>}
+            {location.pathname === '/Home' && <button className={`${styles.btn_close} ${isFav ? styles.btn_close_fav : ''}`} name='btn_close' onClick={handleClick}>⨉</button>}
             {
                isFav ? (
                   <button className={`${styles.btn_star_on} ${animate ? styles.btn_star : ''}`} name='btn_star_on' onClick={handleClick}>★</button>

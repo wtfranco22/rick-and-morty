@@ -32,13 +32,15 @@ export default function Nav({ onSearch, logout }) {
         <>
             <div className={styles.container}>
                 <Link to={'/Home'} className={styles.title}>
-                    Home
+                    <span class="material-symbols-outlined">
+                        home
+                    </span>
                 </Link>
                 <Link to={'/About'} className={styles.title}>
                     About
                 </Link>
                 <Link to={'/Favorites'} className={styles.title}>
-                    Favs
+                    Favs ★
                 </Link>
                 {
                     location.pathname === '/Home' &&
@@ -52,7 +54,9 @@ export default function Nav({ onSearch, logout }) {
                     </>
                 }
                 <div className={styles.logout}>
-                    <button onClick={handleClick} className={styles.btn} id='logout'>logout</button>
+                    <button onClick={handleClick} className={styles.btn} id='logout'><span class="material-symbols-outlined">
+                        logout
+                    </span></button>
                 </div>
             </div>
         </>
