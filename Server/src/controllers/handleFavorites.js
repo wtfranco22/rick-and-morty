@@ -7,6 +7,7 @@ const postFavs = async (req, res) => {
         if (indexUser === -1) throw new Error('Token');
         let { character } = req.body;
         users[indexUser].favs.push(character);
+        users[indexUser].favs.sort((a, b) => a.id - b.id);
         await fs.writeFile(__dirname + '/../utils/users.json', JSON.stringify(users, null, 2));
         return res.status(200).json(users[indexUser].favs);
     }
