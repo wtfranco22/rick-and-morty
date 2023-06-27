@@ -1,6 +1,7 @@
 import styles from './DetailPage.module.css';
 import { Detail } from '../../components';
 import useCharacter from "../../hooks/useCharacter";
+import { useSelector } from 'react-redux';
 
 /**
  * Componente que muestra el detalle del personaje seleccionado
@@ -8,9 +9,10 @@ import useCharacter from "../../hooks/useCharacter";
  */
 export default function DetailPage() {
     const character = useCharacter();
+    const { loading } = useSelector((state) => state)
     return (
         <>
-            {!character.name ? (
+            {loading ? (
                 <>
                     <div className={styles.loading} >
                         <div className={styles.spinner}></div>
@@ -21,8 +23,8 @@ export default function DetailPage() {
                         <div className={styles.progressBar}></div>
                     </div >
                 </>
-            ) :
-                (<Detail character={character} />)
+            )
+               : character.name && (<Detail character={character} />)
             }
 
         </>

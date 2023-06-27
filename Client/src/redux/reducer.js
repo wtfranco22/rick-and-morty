@@ -33,18 +33,17 @@ const rootReducer = (state = initialState, { type, payload }) => {
             };
 
         case REMOVE_CHARACTER:
-            const favs = state.myFavorites.filter((character) => Number(character.id) !== Number(payload));
             return {
                 ...state,
-                allCharacters: state.allCharacters.filter((character) => Number(character.id) !== Number(payload)),
-                myFavorites: favs,
-                allFavs: favs
+                allCharacters: state.allCharacters.filter((character) => Number(character.id) !== Number(payload))
             };
 
         case GET_CHARACTER:
+            let character = state.allCharacters.find((character) => Number(character.id) === Number(payload));
+            if (!character) throw new Error('Character not found');
             return {
                 ...state,
-                characterDetail: state.allCharacters.find((character) => Number(character.id) === Number(payload))
+                characterDetail: character
             };
 
         case CLEAN_CHARACTER:
@@ -121,6 +120,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 allCharacters: [],
                 allFavs: [],
                 myFavorites: [],
+                characterDetail: [],
                 access: false
             };
 

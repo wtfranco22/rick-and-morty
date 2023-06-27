@@ -43,6 +43,7 @@ export const removeCharacter = (id) => {
         dispatch(setLoading(true));
         setTimeout(() => {
             dispatch({ type: REMOVE_CHARACTER, payload: id });
+            dispatch(removeFav(id));
             dispatch(setLoading(false));
         }, 750);
     };
@@ -55,13 +56,17 @@ export const removeCharacter = (id) => {
  */
 export const getCharacter = (id) => {
     return async (dispatch) => {
-        dispatch(setLoading(true));
-        setTimeout(() => {
-            dispatch({ type: GET_CHARACTER, payload: id });
-            dispatch(setLoading(false));
-        }, 2000);
+        try {
+            dispatch(setLoading(true));
+            await dispatch({ type: GET_CHARACTER, payload: id });
+        } catch (error) {
+            throw error;
+        } finally {
+            setTimeout(() => { dispatch(setLoading(false)) }, 2000);
+        }
     }
-}
+};
+
 /**
  * limpia el personaje actual en nuestro estado global
  * @returns accion de redux para limpiar el personaje actual
@@ -197,7 +202,10 @@ export const loginUser = (user) => {
 export const logoutUser = () => {
     return { type: LOGOUT }
 }
-
+/**
+ * cargamos los datos nuevamente del usuario con token registrado
+ * @returns accion de redux para recarga de datos del usuario
+ */
 export const reloadAccess = () => {
     return async (dispatch) => {
         try {
