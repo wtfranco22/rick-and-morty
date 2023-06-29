@@ -3,6 +3,8 @@ import { SearchBar } from './../';
 import styles from './Nav.module.css';
 import { useSelector } from 'react-redux';
 import { validateSearch } from '../../utils/Validate';
+import { AiFillStar } from 'react-icons/ai';
+import { MdHome, MdLogout } from 'react-icons/md';
 
 /**
  * Componente que muestra la barra de navegacion del sitio web
@@ -32,15 +34,13 @@ export default function Nav({ onSearch, logout }) {
         <>
             <div className={styles.container}>
                 <Link to={'/Home'} className={styles.title}>
-                    <span class="material-symbols-outlined">
-                        home
-                    </span>
+                    <MdHome className={styles.iconHome} />
                 </Link>
                 <Link to={'/About'} className={styles.title}>
                     About
                 </Link>
                 <Link to={'/Favorites'} className={styles.title}>
-                    Favs ★
+                    Favs <AiFillStar className={styles.iconStar} />
                 </Link>
                 {
                     location.pathname === '/Home' &&
@@ -53,11 +53,7 @@ export default function Nav({ onSearch, logout }) {
                         </div>
                     </>
                 }
-                <div className={styles.logout}>
-                    <button onClick={handleClick} className={styles.btn} id='logout'><span class="material-symbols-outlined">
-                        logout
-                    </span></button>
-                </div>
+                <MdLogout onClick={handleClick} className={styles.iconLogout} />
             </div>
         </>
     )

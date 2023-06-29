@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { validateForm } from '../../utils/Validate';
 import styles from './LoginPage.module.css';
+import { useSelector } from 'react-redux';
 /**
  * Componente que muestra el formulario para iniciar sesion el usuario
  * @param {function} login - Funcion para iniciar sesion una vez validado los datos
  * @returns {JSX.Element} elemento JSX que muestra el mensaje
  */
 export default function LoginPage({ login }) {
+    const { loading, error } = useSelector((state) => state);
     const [userData, setUserData] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({ email: '', password: '' })
     const [send, setSend] = useState(false);
@@ -30,6 +32,7 @@ export default function LoginPage({ login }) {
         event.preventDefault();
         login(userData);
     }
+    if(loading || error) return null;
     return (
         <div className={styles.container}>
             <form onSubmit={handleSumbmit} className={styles.form} autoComplete='off'>

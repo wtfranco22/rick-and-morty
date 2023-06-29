@@ -3,4 +3,5 @@ import Cards from './Cards/Cards';
 import Detail from './Detail/Detail';
 import SearchBar from './SearchBar/SearchBar';
 import MsgError from './Msg/MsgError';
-export { Nav, Cards, SearchBar, Detail, MsgError };
+import Loading from './Loading/Loading';
+export { Nav, Cards, SearchBar, Detail, MsgError, Loading };

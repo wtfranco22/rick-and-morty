@@ -9,22 +9,16 @@ import { useSelector } from 'react-redux';
  */
 export default function DetailPage() {
     const character = useCharacter();
-    const { loading } = useSelector((state) => state)
+    const { loading } = useSelector((state) => state);
     return (
         <>
             {loading ? (
-                <>
-                    <div className={styles.loading} >
-                        <div className={styles.spinner}></div>
-                        <div className={styles.loading_text}>Loading...</div>
-                    </div>
-                    <div className={styles.loadingContainer}>
-                        <div className={styles.bgContainer}></div>
-                        <div className={styles.progressBar}></div>
-                    </div >
-                </>
+                <div className={styles.loadingContainer}>
+                    <div className={styles.bgContainer}></div>
+                    <div className={styles.progressBar}></div>
+                </div >
             )
-               : character.name && (<Detail character={character} />)
+                : character.name && (<Detail character={character} />)
             }
 
         </>

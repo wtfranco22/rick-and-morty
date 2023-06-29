@@ -1,5 +1,5 @@
 import { Cards } from './../../components';
-import styles from './FavoritesPAge.module.css';
+import styles from './FavoritesPage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterCards, orderCards } from '../../redux/actions';
 import { useEffect } from 'react';
@@ -11,8 +11,7 @@ import { useEffect } from 'react';
  */
 export default function FavoritesPage({ onClose }) {
     const dispatch = useDispatch();
-    const loading = useSelector((state)=>state.loading);
-    const favorites = useSelector((state) => state.myFavorites);
+    const { loading, myFavorites: favorites } = useSelector((state) => state);
     useEffect(() => {
         return () => { dispatch(filterCards('all')) }
     }, [dispatch]);
@@ -22,14 +21,9 @@ export default function FavoritesPage({ onClose }) {
     const handleFilter = (event) => {
         dispatch(filterCards(event.target.value));
     }
+    if (loading) return null;
     return (
         <>
-            {loading && (
-                <div className={styles.loading}>
-                    <div className={styles.spinner}></div>
-                    <div className={styles.loading_text}>Loading...</div>
-                </div>
-            )}
             <div className={styles.container}>
                 <div className={styles.filter}>
                     <label className={styles.label}>

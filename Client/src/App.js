@@ -1,12 +1,12 @@
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { HomePage, AboutPage, DetailPage, ErrorPage, LoginPage, FavoritesPage } from './pages'
-import { Nav, MsgError } from './components';
+import { HomePage, AboutPage, DetailPage, ErrorPage, LoginPage, FavoritesPage } from './pages';
+import { Nav, MsgError, Loading } from './components';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCharacter, loginUser, logoutUser, reloadAccess, removeCharacter, setError } from './redux/actions';
 
 function App() {
-   const { allCharacters: characters, error, access } = useSelector((state) => state);
+   const { allCharacters: characters, error, access, loading } = useSelector((state) => state);
    const location = useLocation(); //obtengo nombre de la ruta donde estoy
    const navigate = useNavigate(); //utilizado para redireccionar
    const dispatch = useDispatch(); //utilizado para despachar acciones al estado global
@@ -26,7 +26,7 @@ function App() {
    const closeError = () => dispatch(setError());
    return (
       <>
-         {error && <MsgError error={error} closeMsg={closeError} />}
+         {loading ? <Loading /> : error && <MsgError error={error} closeMsg={closeError} />}
          {location.pathname !== '/' && <Nav onSearch={onSearch} logout={logout} />}
          {/* hacemos renderizado condicional, fuera de Routes para mostrar en todas las rutas */}
          <Routes>

@@ -1,9 +1,9 @@
 .input {
     padding: 8px;
-    width: 108px;
+    width: 7em;
     border: 1px solid #ffffaa;
     border-radius: 4px;
-    margin-right: 5px;
+    margin-right: .3em;
     transition: border-color 0.3s ease;
     background-color: #ffffaa;
 }
@@ -11,12 +11,14 @@
 .input:focus {
     outline: none;
     border-color: #036902;
+    box-shadow: 0 0 5px 1px #036902;
 }
 
 .btn {
-    padding: 8px 16px;
+    padding: 8px 10px;
     background-color: #036902;
-    border: 1px solid #036902;
+    color: #ffffaa;
+    border: 1px solid #00000000;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -24,6 +26,6 @@
 
 .btn:hover {
     color: #036902;
-    background-color: #000000;
-    border: 1px solid #036902;
+    color: #ffffaa;
+    box-shadow: 0 0 5px 1px #ffffaa;
 }

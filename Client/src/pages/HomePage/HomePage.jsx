@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { Cards } from "./../../components";
-import styles from "./HomePage.module.css";
 
 /**
  * Componente que representa la pagina principal de la aplicacion
@@ -9,16 +8,6 @@ import styles from "./HomePage.module.css";
  * @returns {JSX.Element} Elemento JSX que muestra la página principal
  */
 export default function HomePage({ characters, onClose }) {
-      const loading = useSelector((state)=>state.loading);
-      return (
-            <>
-                  {loading && (
-                        <div className={styles.loading}>
-                              <div className={styles.spinner}></div>
-                              <div className={styles.loading_text}>Loading . . .</div>
-                        </div>
-                  )}
-                  <Cards characters={characters} onClose={onClose} />
-            </>
-      );
+      const { error } = useSelector((state) => state);
+      return error ? null : <Cards characters={characters} onClose={onClose} />;
 }

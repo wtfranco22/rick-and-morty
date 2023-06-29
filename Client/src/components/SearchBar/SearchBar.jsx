@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './SearchBar.module.css'
 import { useState } from "react";
 import { validateSearch } from '../../utils/Validate';
-import { MsgError } from '../';
 import { setError } from '../../redux/actions';
+import { ImSearch } from 'react-icons/im';
 
 /**
  * Componente de barra de busqueda que permite buscar personajes
@@ -12,7 +12,6 @@ import { setError } from '../../redux/actions';
  */
 export default function SearchBar({ onSearch }) {
    const characters = useSelector((state) => state.allCharacters);
-   const error = useSelector((state) => state.error);
    const dispatch = useDispatch();
    const [id, setId] = useState('');
    /**
@@ -29,27 +28,15 @@ export default function SearchBar({ onSearch }) {
     */
    const searchCharacter = () => {
       let value = validateSearch(id, characters);
-      if (!value) {
-         onSearch(id);
-         setId('');
-      }else{
-         dispatch(setError(value))
-      }
+      (!value) ? onSearch(id) : dispatch(setError(value));
+      setId('');
    }
-   /**
-    * funcion encargada de cerrar el mensaje de error en caso de existir
-    */
-   const closeMsg = () => {
-      dispatch(setError(null))
-      setId('')
-   }
-   return (
-      <>
-         <div className={styles.container}>
-            <input className={styles.input} type='search' value={id} onChange={changeId} />
-            <button className={styles.btn} onClick={searchCharacter}>Add</button>
-         </div>
-         {error && <MsgError error={error} closeMsg={closeMsg} />}
-      </>
-   );
+      return (
+         <>
+            <div className={styles.container}>
+               <input className={styles.input} type='search' value={id} onChange={changeId} placeholder='Search . . . '/>
+               <button className={styles.btn} onClick={searchCharacter}><ImSearch /></button>
+            </div>
+         </>
+      );
 }
