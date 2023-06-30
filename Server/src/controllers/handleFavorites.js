@@ -22,7 +22,7 @@ const deleteFavs = async (req, res) => {
         let indexUser = req.indexUser;
         if (indexUser === -1) throw new Error('Token');
         const { id } = req.params;
-        users[indexUser].favs = users[indexUser].favs.filter((character) => character.id !== id);
+        users[indexUser].favs = users[indexUser].favs.filter((character) => Number(character.id) !== Number(id));
         await fs.writeFile(__dirname + '/../utils/users.json', JSON.stringify(users, null, 2));
         return res.status(200).json(users[indexUser].favs);
     } catch (error) {
