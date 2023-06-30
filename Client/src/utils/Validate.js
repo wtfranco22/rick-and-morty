@@ -19,7 +19,7 @@ const validateSearch = (id, characters) => {
     if (id.trim() !== '') {
         if (!isNaN(id)) {
             if (0 < id && id < 827) {
-                if (characters.some((character) => character.id === Number(id))) error = "already exists!"
+                if (characters.some((character) => Number(character.id) === Number(id))) error = "already exists!"
             } else {
                 error = "character not found!";
             }

@@ -40,12 +40,15 @@ export const addCharacter = (id) => {
  */
 export const removeCharacter = (id) => {
     return async (dispatch) => {
-        dispatch(setLoading(true));
-        setTimeout(() => {
+        try {
+            dispatch(setLoading(true));
             dispatch({ type: REMOVE_CHARACTER, payload: id });
-            dispatch(removeFav(id));
-            dispatch(setLoading(false));
-        }, 750);
+            await dispatch(removeFav(id));
+        } catch (error) {
+            dispatch(setError(error.message));
+        } finally {
+            setTimeout(() => { dispatch(setLoading(false)) }, 250);
+        }
     };
 };
 
@@ -104,15 +107,12 @@ export const addFav = (character) => {
 export const removeFav = (id) => {
     return async (dispatch) => {
         try {
-            dispatch(setLoading(true));
             const endpoint = `http://localhost:3001/rickandmorty/fav/${id}`;
             const TOKEN = localStorage.getItem('token');
             let response = await axios.delete(endpoint, { headers: { Authorization: `Bearer ${TOKEN}` } })
             dispatch({ type: REMOVE_FAV, payload: response.data });
         } catch (error) {
             dispatch({ type: SET_ERROR, payload: error.message });
-        } finally {
-            setTimeout(() => dispatch(setLoading(false)), 250);
         }
     }
 }

@@ -29,9 +29,8 @@
 }
 
 .select{
-    
     margin-top: 1em;
-    background-color: rgb(201, 110, 110);
+    background-color: #000;
     color: #ffffaa;
     border: 1px solid rgb(1, 43, 1);
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.212);

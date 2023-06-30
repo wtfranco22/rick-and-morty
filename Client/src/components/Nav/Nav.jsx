@@ -3,7 +3,7 @@ import { SearchBar } from './../';
 import styles from './Nav.module.css';
 import { useSelector } from 'react-redux';
 import { validateSearch } from '../../utils/Validate';
-import { AiFillStar } from 'react-icons/ai';
+import { MdStar } from 'react-icons/md';
 import { MdHome, MdLogout } from 'react-icons/md';
 
 /**
@@ -40,7 +40,7 @@ export default function Nav({ onSearch, logout }) {
                     About
                 </Link>
                 <Link to={'/Favorites'} className={styles.title}>
-                    Favs <AiFillStar className={styles.iconStar} />
+                    Favs <MdStar className={styles.iconStar} />
                 </Link>
                 {
                     location.pathname === '/Home' &&

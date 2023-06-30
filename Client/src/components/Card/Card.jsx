@@ -3,10 +3,10 @@ import styles from './Card.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFav, removeFav } from './../../redux/actions';
 import { useEffect, useState } from 'react';
+import { MdClose, MdStar, MdOutlineStarOutline } from 'react-icons/md';
 export function Card({ character, onClose }) {
    const location = useLocation();
    const [isFav, setIsFav] = useState(false);
-   const [animate, setAnimate] = useState(false);
    const dispatch = useDispatch();
    const favorites = useSelector((state) => state.allFavs)
    useEffect(() => {
@@ -17,40 +17,31 @@ export function Card({ character, onClose }) {
       });
    }, [character.id, favorites]);
 
-   const handleClick = (event) => {
-      // capturamos el evento click y realizamos una accion
-      if (event.target.name === 'btn_close') {
-         // borramos al character del estado global
-         onClose(character.id);
+   const handleClickClose = () => onClose(character.id);
+   const handleClickStar = () => {
+      if (isFav) {
+         dispatch(removeFav(character.id));
+         setIsFav(false);
       } else {
-         if (isFav) {
-            // cancelamos animacion y quitamos de fav
-            setAnimate(false)
-            dispatch(removeFav(character.id));
-            setIsFav(false);
-         } else {
-            //agregamos animacion despues de agregar un nuevo character fav
-            dispatch(addFav(character));
-            setAnimate(true)
-            setIsFav(true);
-         }
+         dispatch(addFav(character));
+         setIsFav(true);
       }
    }
    return (
       <>
          <div className={`${styles.card} ${isFav ? styles.card_favorite : ''}`}>
-            <Link to={'/Detail/' + character.id} className={styles.textLink}>
-               <img className={`${styles.avatar} ${isFav ? styles.avatar_fav:''}`} src={character.image} alt={character.name} />
-               <div className={styles.details}>
-                  <h3 className={styles.name}>{character.name.split(' ', 1)}</h3>
+            <Link to={'/Detail/' + character.id}>
+               <img className={`${styles.avatar} ${isFav ? styles.avatar_fav : ''}`} src={character.image} alt={character.name} />
+               <div className={`${styles.details} ${isFav?styles.details_fav:''}`}>
+                  <h3 className={`${styles.name} ${isFav? styles.name_fav : ''}`}>{character.name.split(' ', 1)}</h3>
                </div>
             </Link>
-            {location.pathname === '/Home' && <button className={`${styles.btn_close} ${isFav ? styles.btn_close_fav : ''}`} name='btn_close' onClick={handleClick}>⨉</button>}
+            {location.pathname === '/Home' && <button className={styles.btn_close} name='btn_close' onClick={handleClickClose}><MdClose className={`${styles.icon} ${isFav ? styles.icon_fav : ''}`} /></button>}
             {
                isFav ? (
-                  <button className={`${styles.btn_star_on} ${animate ? styles.btn_star : ''}`} name='btn_star_on' onClick={handleClick}>★</button>
+                  <button className={styles.btn_star} onClick={handleClickStar} name='btn_star'><MdStar className={`${styles.icon_fav} ${styles.star_animate}`} /></button>
                ) : (
-                  <button className={styles.btn_star_off} name='btn_star_off' onClick={handleClick}>☆</button>
+                  <button className={styles.btn_star} onClick={handleClickStar} name='btn_star'><MdOutlineStarOutline className={`${styles.icon} ${styles.star_animate}`} /></button>
                )
             }
          </div>

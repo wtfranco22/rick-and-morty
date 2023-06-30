@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    backdrop-filter: blur(2px);
 }
 
 .spinner {
@@ -18,20 +19,9 @@
     width: 7em;
     height: 7em;
     margin-right: 3em;
-    /* border-radius: 50%; */
-    /* border: 5px solid #ffff01; */
-    /* border-top-color: transparent; */
-    /* animation: spin .8s linear infinite; */
 }
 
-/* @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-} */
-
 .loading_text {
-    /* margin-top: 1.5em; */
     font-size: 2.5em;
     color: #f6f833;
     text-shadow: 2px 2px 4px rgba(0, 0, 0);

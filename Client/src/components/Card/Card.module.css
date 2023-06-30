@@ -11,7 +11,7 @@
 }
 
 .card:hover {
-    box-shadow: 0 0 30px #ffffaa;
+    box-shadow: 0 0 25px 1px #ffffaa;
 }
 
 .card:hover .details {
@@ -19,9 +19,12 @@
     width: 100%;
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
-    background-color: #ffffaade;
+    background-color: #000;
     transition: opacity 0.5s ease;
     opacity: 1;
+}
+.card:hover .details_fav {
+    background-color: #ffffaade;
 }
 
 .card .details {
@@ -38,14 +41,15 @@
     margin: 5%;
     border-radius: 5%;
     object-fit: cover;
-    opacity: .7;
-    box-shadow: 0px 0px 10px 10px #000000d9;
+    opacity: .6;
+    box-shadow: 0px 0px 8px 1px #000;
 }
 
 .card:hover .avatar {
     opacity: 1;
 }
-.avatar_fav{
+
+.avatar_fav {
     opacity: 1;
 }
 
@@ -53,67 +57,57 @@
     font-size: 1.5em;
     text-align: center;
     margin: auto;
-    border-bottom: 1px solid #000000;
-    color: #000;
-    font-weight: bolder;
-}
-
-.card .btn_close {
-    position: absolute;
-    right: 0px;
-    padding: 1px 5px;
-    border-radius: 50%;
-    border: 2px solid #000;
-    background-color: #000;
+    border-bottom: 1px solid #ffffaa;
     color: #ffffaa;
-    cursor: pointer;
-    font-size: large;
 }
-
-.card .btn_close_fav {
+.name_fav {
+    font-size: 1.5em;
+    text-align: center;
+    margin: auto;
+    border-bottom: 1px solid #000;
     color: #000;
-    border: 2px solid #ffffaa;
-    background-color: #ffffaa;
-    font-weight: bold;
 }
 
+.btn_close {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    right: 2%;
+    top: 3%;
+}
+
+.btn_star {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    left: 2%;
+    top: 3%;
+}
+
+.icon {
+    color: #ffffaa;
+    background-color: #000;
+    border-radius: 50%;
+    font-size: 2em;
+    box-shadow: 0px 0px 8px 1px #000;
+}
+
+.icon_fav {
+    color: #000;
+    background-color: #ffffaa;
+    border-radius: 50%;
+    font-size: 2em;
+    box-shadow: 0px 0px 8px 1px #000;
+}
 
 .card .btn:hover {
     background-color: #ffffaa;
     color: #000;
 }
 
-.textLink {
-    text-decoration: none;
-    color: #ffffaa;
-}
-
-.btn_star_off {
-    position: absolute;
-    left: 0px;
-    padding: 1px 5px;
-    border: 2px solid #000;
-    border-radius: 50%;
-    background-color: #000;
-    color: #ffffaa;
-    cursor: pointer;
-    font-size: large;
-}
-
-.btn_star_on {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    padding: 1px 5px;
-    border: 2px solid #ffffaa;
-    border-radius: 50%;
-    background-color: #ffffaa;
-    color: #000;
-    cursor: pointer;
-    font-size: large;
-}
-
-.btn_star {
+.star_animate {
     animation: star 1s forwards
 }
 
