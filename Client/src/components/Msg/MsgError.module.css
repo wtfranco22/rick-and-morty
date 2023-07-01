@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 .msgContent {
@@ -34,20 +35,23 @@
     color: #ffffaa;
 }
 
-.closeButton {
+.btn {
     position: absolute;
-    top: 0px;
-    right: 0px;
-    /* padding: 5px; */
-    border-radius: 50%;
-    border: 2px solid #ffffaa;
-    background-color: #000;
-    color: #ffffaa;
-    cursor: pointer;
-    font-size: x-large;
+    top: 0;
+    right: 0;
+    border: none;
+    background-color: transparent;
 }
 
-.closeButton:hover {
+.icon {
+    font-size: 2em;
+    color: #ffffaa;
+    background-color: #000;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.icon:hover {
     background-color: #ffffaa;
     color: #000;
 }
