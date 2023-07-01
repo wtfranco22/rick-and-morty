@@ -47,7 +47,7 @@ export default function LoginPage({ login }) {
                     <input className={styles.input} onInput={handleInput} type='password' name='password' id='email' value={userData.password} placeholder='Escriba su contraseña' />
                     <p className={styles.errors}>{errors.password}</p>
                 </div>
-                <button disabled={!send} className={styles.btn} type='submit'>Submit</button>
+                <button disabled={!send} className={styles.btn} type='submit'>Login</button>
             </form>
         </div>
     )
