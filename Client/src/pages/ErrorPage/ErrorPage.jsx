@@ -3,6 +3,8 @@ import video from './../../assets/images/4.mp4';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { setErrorPage } from '../../redux/actions';
+import { Link } from 'react-router-dom';
+import { MdHome } from 'react-icons/md';
 /**
  * Componente que muestra un video cuando hubo error en lectura de pagina
  * @returns {JSX.Element} Elemento JSX que muestra la pagina de error
@@ -20,7 +22,7 @@ export default function ErrorPage() {
                 Tu navegador no admite el elemento de video.
             </video>
             <div className={styles.description}>
-                <p>Oh no! we got lost, let's go back home</p>
+                Oh no! we got lost, let's go &nbsp; &nbsp;<Link to='/Home' className={styles.link}><MdHome />&nbsp;back home</Link>
             </div>
         </div>
     )
