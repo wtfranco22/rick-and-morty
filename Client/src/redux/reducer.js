@@ -6,7 +6,7 @@ import {
     ADD_FAV, REMOVE_FAV, FILTER, ORDER,
 
     /**complements */
-    SET_LOADING, SET_ERROR,
+    SET_LOADING, SET_ERROR, SET_ERROR_PAGE,
 
     /**session */
     LOGIN_SUCCESS, LOGOUT
@@ -19,7 +19,8 @@ const initialState = {
     characterDetail: {},
     loading: false,
     error: null,
-    access: false
+    access: false,
+    errorPage : false,
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -124,6 +125,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 access: false
             };
 
+        case SET_ERROR_PAGE:
+            return{
+                ...state,
+                errorPage:payload
+            }
         default:
             return {
                 ...state

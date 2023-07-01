@@ -1,0 +1,38 @@
+.footerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 4.5em;
+    background-color: rgba(0, 0, 0, 0.65);
+}
+
+.linksContainer {
+    margin-top: 1em;
+}
+
+.icons {
+    color: #ffffaa40;
+    font-size: 1.5em;
+    margin: 0 1.5em;
+}
+.icons:hover{
+    color: #ffff01;
+}
+
+.content {
+    display: flex;
+    text-align: center;
+    color: #ffffaa40;
+    margin-top: .5em;
+}
+
+.icon_cp{
+    font-size: 1.2em;
+    margin-right: .5em;
+}
+
+.link_cp{
+    text-decoration: none;
+    color: #ffff01;
+}

@@ -8,7 +8,7 @@
 
 .img {
     width: 25%;
-    height: 50vh;
+    height: 60vh;
     display: flex;
     background-image: url('../../assets/images/profile-henry.png');
     background-color: #ffff01;
@@ -16,14 +16,14 @@
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 5px;
-    box-shadow: 20px 0 30px rgba(0, 255, 0, 0.5);
+    z-index: 1;
 
 }
 .description {
     width: 75%;
     height: 50vh;
     background-color: rgba(0, 0, 0, 0.8);
-    box-shadow: -20px 0 30px rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 2em 1px #ffffaa;
     color: #ffffaa;
     text-align: center;
 }

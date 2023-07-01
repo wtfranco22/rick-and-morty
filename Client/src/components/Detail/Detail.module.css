@@ -1,21 +1,21 @@
 .container{
-    display: flex; /*hacemos flexible el contenedor*/
-    height: 75vh; /*le decimos que va a ocupar toda la pantalla
-    /*justify-content: center; /*vamos a ocupar el centro segun el eje X */
-    align-items: center; /*vamos a ajustar al centro segun el eje Y*/
-    flex-direction: row-reverse; /*la direccion es una fila invertida*/
+    display: flex;
+    height: 75vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
     padding: 0 20%;
 }
 .img{
-    width: 50%;
-    height: 50vh;
+    width: 40%;
+    height: 60vh;
     display: flex;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    box-shadow: 20px 0 30px rgba(0, 255, 0, 0.5);
+}
+.img img{
+    border-radius: 5%;
 }
 .description{
-    width: 50%;
+    min-width: 60%;
     height: 50vh;
     display: flex;
     flex-direction: column;
@@ -23,5 +23,5 @@
     align-items: center;
     color: #ffffaa;
     background-color: rgba(0, 0, 0, 0.8);
-    box-shadow: -20px 0 30px rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 2em 1px #ffffaa;
 }

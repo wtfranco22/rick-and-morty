@@ -9,7 +9,7 @@ import {
     SET_LOADING, SET_ERROR,
 
     /**session */
-    LOGIN_SUCCESS, LOGOUT
+    LOGIN_SUCCESS, LOGOUT, SET_ERROR_PAGE
 } from './types';
 
 import axios from 'axios';
@@ -169,6 +169,13 @@ export const setError = (message) => {
     return {
         type: SET_ERROR,
         payload: message
+    }
+}
+
+export const setErrorPage = (bool)=>{
+    return{
+        type: SET_ERROR_PAGE,
+        payload: bool
     }
 }
 
